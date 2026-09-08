@@ -47,7 +47,39 @@ strokeWeight(0);
 fill(152,157,166);
 rect(200,75,40,100);
 rect(215,160,10,50);
-circle(217,50,30,30);
+
+fill(255,0,26);
+circle(220,100,20,20);
+
+fill(255,175,0);
+circle(220,125,20,20);
+
+fill(0,255,0);
+circle(220,150,20,20)
+
+fill(0,0,0);
+textSize(15);
+text("6 dobbelsteen",200,275);
+fill(255,255,255);
+strokeWeight(5);
+rect(200,300,50,50,10);
+fill(0,0,0);
+circle(225,325,5,5);
+circle(210,310,5,5);
+circle(240,340,5,5);
+
+fill(0,0,0);
+textSize(15);
+text("7 mario",450,50);
+strokeWeight(0);
+fill(255,0,0);
+rect(450,65,100,10);
+rect(440,75,140,10);
+fill(143,117,0);
+rect(440,85,50,10);
+fill(245,231,169)
+rect(480,85,60,10)
+
 
 
 }
