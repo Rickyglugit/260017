@@ -1,7 +1,7 @@
 let getal1 = 10;
 let getal2 = 20;
 let Ypositie= 80;
-let Ymargen = 50
+let Ymargen = 50;
 function setup() {
   createCanvas(800, 800);
 }
