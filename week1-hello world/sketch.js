@@ -1,3 +1,9 @@
+let crewmate;
+
+function preload() {
+  crewmate = loadImage('among_us_crewmate.png');
+}
+
 function setup() {
   createCanvas(800, 800);
 }
@@ -167,7 +173,11 @@ rect(580,175,40,10);
 fill(245, 231, 169);
 rect(400,185,40,10);
 fill(0,0,255);
-rect(440,185,100,10);
-
+rect(440,185,140,10);
+fill(245, 231, 169);
+rect(580,185,40,10);
+fill(0,0,0);
+text("8 crewmate",400,275,);
+image(crewmate, 400, 300, 100, 100)
 
 }
