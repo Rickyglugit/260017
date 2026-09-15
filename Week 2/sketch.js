@@ -2,6 +2,8 @@ function setup() {
   createCanvas(800, 600);
 }
 
+  
+
 function draw() {
   background(220);
   strokeWeight(0);
@@ -162,12 +164,29 @@ circle(230,500,35,35);
 circle(300,500,35,35);
 // auto 1
 
-fill(205,0,0);
-rect(200,440,100,60);
-rect(300,470,30,30);
-fill(60,60,60);
-circle(230,500,35,35);
-circle(300,500,35,35);
-// auto 1
+  tekenBoom(100, 410);
 
+  tekenBoom(200, 410);
+  auto(100,100)
+}
+
+function tekenBoom(xPos, yPos){
+  fill(115, 75, 12);
+  rect(xPos,yPos,20,85);
+  fill(0,170,0);
+  circle(xPos + 10,yPos - 20,55,55);
+  fill(0,130,0);
+  circle(xPos + 10,yPos - 20,55,55);
+  fill(0,100,0);
+  circle(xPos + 10,yPos - 20,55,55);
+  fill(0,90,0);
+  circle(xPos + 10,yPos - 20,55,55);
+}
+function auto(xPos1, yPos1){
+fill(205,0,0);
+rect(xPos1+100,yPos1+340,100,60);
+rect(xPos1+200,yPos1+370,30,30);
+fill(60,60,60);
+circle(xPos1+130,yPos1+400,35,35);
+circle(xPos1+200,yPos1+400,35,35);
 }
