@@ -15,11 +15,18 @@ function draw() {
 
   text("4 Beweeg de eightball met WASD of de pijltjestoetsen",360,20);
 
-  teller += 1;
+  teller += 1
 
+  if (teller >= 500) {
+    teller = 0
+  }
+  if (keyIsPressed(32)){
+    teller = 0
+  }
   if (keyIsDown(66)){
-    rect(20,50,60,60);
+    rect(20,50,60,60)
 }
-text(""+teller,20,150);
-}
+text(""+teller,20,150)
 
+}
+  
