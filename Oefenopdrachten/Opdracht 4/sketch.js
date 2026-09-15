@@ -20,7 +20,7 @@ function draw() {
   if (teller >= 500) {
     teller = 0
   }
-  if (keyIsPressed(32)){
+  if (keyIsPressed){
     teller = 0
   }
   if (keyIsDown(66)){
