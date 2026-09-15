@@ -167,7 +167,7 @@ circle(300,500,35,35);
   tekenBoom(100, 410);
 
   tekenBoom(200, 410);
-  auto(100,100)
+  auto(100,100);
 }
 
 function tekenBoom(xPos, yPos){
