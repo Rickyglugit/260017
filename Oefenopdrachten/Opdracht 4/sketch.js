@@ -4,6 +4,12 @@ function setup() {
   createCanvas(800, 800);
 }
 
+function keyIsPressed() {
+  if (keyCode === 32) {
+    teller = 0;
+  }
+}
+
 function draw() {
   background(220);
 
@@ -17,16 +23,12 @@ function draw() {
 
   teller += 1
 
-  if (teller >= 500) {
-    teller = 0
-  }
-  if (keyIsPressed){
-    teller = 0
-  }
   if (keyIsDown(66)){
     rect(20,50,60,60)
 }
-text(""+teller,20,150)
+text(""+teller,20,150);
+
+rect(30,350,50,200);
 
 }
   
