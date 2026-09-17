@@ -1,9 +1,14 @@
 let teller = 1
+let trafficlight = 'black'
+
 
 function setup() {
   createCanvas(800, 575);
 }
+function keyPressed() {
 
+
+}
 function draw() {
   background(220);
   fill(0, 0, 0);
@@ -36,9 +41,11 @@ function draw() {
   rect(30, 300, 50, 200);
   rect(45, 500, 20, 70);
   //lichten
-  fill(150, 0, 0);
+  fill(trafficlight);
   circle(55, 325, 30, 20);
-  fill(150, 150, 0)
+  fill(trafficlight);
   circle(55, 390, 30, 20);
+  fill(trafficlight);
+  circle(55, 460, 30, 20);
 }
 
