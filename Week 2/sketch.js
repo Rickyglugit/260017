@@ -1,13 +1,13 @@
-let frameCount2 = 1
-
+let circlelight1 = 'red'
+let circlelight2 = 'black'
+let circlelight3 = 'black'
+let trafficlight = 0
 function setup() {
   createCanvas(800, 600);
   frameRate(80);
   
 
 }
-
-
 
 function draw() {
   background(220);
@@ -55,14 +55,14 @@ function draw() {
   rect(650, 450, 10, 50);
 
   rect(630, 300, 50, 150);
-
-  fill(255, 0, 0);
+//lichten van stoplicht
+  fill(circlelight1);
   circle(655, 325, 40, 40);
 
-  fill(255, 200, 0);
+  fill(circlelight2);
   circle(655, 370, 40, 40);
 
-  fill(0, 255, 0);
+  fill(circlelight3);
   circle(655, 415, 40, 40);
 
   // eerste wolk
@@ -182,9 +182,34 @@ function draw() {
   tekenBoom(100, 410);
 
   tekenBoom(200, 410);
-  auto(100, 100);
-}
+  auto(300, 100);
 
+}
+function keyPressed(){
+  if (keyCode ==ENTER){
+     trafficlight = trafficlight + 1
+  
+  if (trafficlight >2){
+    trafficlight = 0
+  }
+  if (trafficlight ==0){
+    circlelight1 = 'red'
+    circlelight2 = 'black'
+    circlelight3 = 'black'
+  }
+  else if(trafficlight ==1){
+    circlelight1 = 'black'
+    circlelight2 = 'orange'
+    circlelight3 = 'black'
+  
+  }
+  else if (trafficlight ==2){
+    circlelight1 = 'black'
+    circlelight2 = 'orange'
+    circlelight3 = 'green'
+  }
+}
+}
 function tekenBoom(xPos, yPos) {
   fill(115, 75, 12);
   rect(xPos, yPos, 20, 85);
