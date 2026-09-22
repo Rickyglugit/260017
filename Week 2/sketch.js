@@ -2,7 +2,27 @@ let circlelight1 = 'red'
 let circlelight2 = 'black'
 let circlelight3 = 'black'
 let trafficlight = 0
-let sunspeed =+ 1
+
+let sunspeed = 1;
+let sunposition=-50;
+
+let cloudspeed1= 3;
+let cloudposition1= 600;
+
+let cloudspeed2 =2
+let cloudposition2 = 300
+
+let cloudspeed3 =1
+let cloudposition3 = 100
+
+let carposition1 = 150
+let carspeed1 = 2
+
+let carposition2 = 300
+let carspeed2 = 3
+
+let carposition3 = 200
+let carspeed3 = 4
 
 function setup() {
   createCanvas(800, 600);
@@ -69,46 +89,63 @@ function draw() {
 
   // eerste wolk
   fill(230, 230, 230,);
-  circle(600 - frameCount, 200, 50, 50);
-  circle(630 - frameCount, 200, 65, 65);
-  circle(660 - frameCount, 210, 50, 50);
+  circle(cloudposition1, 200, 50);
+  circle(cloudposition1 + 30, 200, 65);
+  circle(cloudposition1+ 60, 210, 50);
 
   fill(255, 255, 255);
-  circle(600 - frameCount, 210, 50, 50);
-  circle(630 - frameCount, 210, 65, 65);
-  circle(660 - frameCount, 220, 50, 50);
+  circle(cloudposition1, 210, 50);
+  circle(cloudposition1 +30, 210, 65);
+  circle(cloudposition1 +60, 220, 50);
+  cloudposition1 = cloudposition1 - cloudspeed1
+
+  if (cloudposition1 < -100) {
+    cloudposition1 = 850
+  }
 
   //tweede wolk
   fill(230, 230, 230,);
-  circle(300 - frameCount, 200, 50, 50);
-  circle(330 - frameCount, 200, 65, 65);
-  circle(360 - frameCount, 210, 50, 50);
+  circle(cloudposition2, 200, 50, 50);
+  circle(cloudposition2 +30, 200, 65, 65);
+  circle(cloudposition2+60, 210, 50, 50);
 
   fill(255, 255, 255);
-  circle(300 - frameCount, 210, 50, 50);
-  circle(330 - frameCount, 210, 65, 65);
-  circle(360 - frameCount, 220, 50, 50);
+  circle(cloudposition2, 210, 50, 50);
+  circle(cloudposition2 +30, 210, 65, 65);
+  circle(cloudposition2 +60, 220, 50, 50);
+ cloudposition2 = cloudposition2 - cloudspeed2
+
+  if (cloudposition2 < -100){
+    cloudposition2 = 850
+  }
+
   //derde wolk
   fill(230, 230, 230,);
-  circle(100 - frameCount, 150, 50, 50);
-  circle(130 - frameCount, 150, 65, 65);
-  circle(160 - frameCount, 160, 50, 50);
-
+  circle(cloudposition3, 150, 50, 50);
+  circle(cloudposition3 +30, 150, 65, 65);
+  circle(cloudposition3 +60, 160, 50, 50);
+ 
   fill(255, 255, 255);
-  circle(100 - frameCount, 160, 50, 50);
-  circle(130 - frameCount, 160, 65, 65);
-  circle(160 - frameCount, 170, 50, 50);
-  if (frameCount == -200) {
-    frameCount = 850
-  }
+  circle(cloudposition3, 160, 50, 50);
+  circle(cloudposition3+ 30, 160, 65, 65);
+  circle(cloudposition3+ 60, 170, 50, 50);
+  cloudposition3 = cloudposition3 - cloudspeed3
+  //reset naar rechts
+if(cloudposition3 <-100){
+  cloudposition3 = 850
+}
+
+
   // de zon
   fill(255, 170, 0);
-  circle(frameCount, 50, 100, 100);
+  circle(sunposition, 50, 100, 100);
 
   fill(255, 255, 0);
-  circle(frameCount, 50, 75, 75);
-  if (frameCount == 850) {
-    frameCount = -50
+  circle(sunposition, 50, 75, 75);
+  sunposition = sunposition + sunspeed;
+  // reset naar links
+  if (sunposition > 850) {
+    sunposition = -50
   }
 
 
@@ -148,8 +185,6 @@ function draw() {
   fill(0, 90, 0);
   circle(260, 390, 55, 55);
 
-
-
   //boom5
   fill(115, 75, 12);
   rect(450, 410, 20, 85);
@@ -162,26 +197,32 @@ function draw() {
   fill(0, 90, 0);
   circle(460, 390, 55, 55);
 
-
-
-
   tekenBoom(100, 410);
 
   tekenBoom(200, 410);
 
-  auto1(300, 100);
-  auto2(200, 150);
-
+  auto1(carposition2, 100);
+  carposition2 = carposition2 + carspeed2
+  if(carposition2 > 850){
+    carposition2 = -200
+  }
+  auto2(carposition3, 150);
+  carposition3 = carposition3 + carspeed3
+if (carposition3> 850){
+  carposition3 = -300
+}
   // auto 0
   fill(205, 0, 0);
-  rect(150, 440, 100, 60);
-  rect(250, 470, 30, 30);
+  rect(carposition1, 440, 100, 60);
+  rect(carposition1+100, 470, 30, 30);
   fill(60, 60, 60);
-  circle(180, 500, 35, 35);
-  circle(250, 500, 35, 35);
-
+  circle(carposition1+30, 500, 35, 35);
+  circle(carposition1+100, 500, 35, 35);
+ carposition1 = carposition1 + carspeed1
+if(carposition1>850){
+  carposition1 = -150
+}
   tekenBoom(300, 510);
-
 }
 function keyPressed() {
   if (keyCode == ENTER) {
@@ -194,17 +235,26 @@ function keyPressed() {
       circlelight1 = 'red'
       circlelight2 = 'black'
       circlelight3 = 'black'
+      carspeed1 = 0
+      carspeed2 = 0
+      carspeed3 = 0
     }
     else if (trafficlight == 1) {
       circlelight1 = 'black'
       circlelight2 = 'black'
       circlelight3 = 'green'
+      carspeed1 = 2
+      carspeed2 = 3
+      carspeed3 = 4
 
     }
     else if (trafficlight == 2) {
       circlelight1 = 'black'
       circlelight2 = 'orange'
       circlelight3 = 'black'
+      carspeed1 = 1
+      carspeed2 = 2
+      carspeed3 = 3
     }
   }
 }
