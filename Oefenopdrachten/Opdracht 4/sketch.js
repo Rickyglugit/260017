@@ -84,13 +84,13 @@ function keyPressed() {
     }
     if (trafficlight == 1) {
       circlelight1 = "black"
-      circlelight2 = "orange"
-      circlelight3 = "black"
+      circlelight2 = "black"
+      circlelight3 = "green"
     }
     if (trafficlight == 2) {
       circlelight1 = "black"
-      circlelight2 = "black"
-      circlelight3 = "green"
+      circlelight2 = "orange"
+      circlelight3 = "black"
     }
 
     console.log(trafficlight);
