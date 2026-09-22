@@ -53,6 +53,17 @@ function smallrectangle(xPos, yPos, eigenaar) {
   rect(xPos, yPos, 125, 125, 10);
 }
 function mousePressed() {
-
+if (mouseButton == LEFT){
+ vakje1 = vakje1 +1
+}
+if (vakje1 ==0){
+  fill(200,200,200);
+}
+else if(vakje1 ==1){
+  fill(255,0,0);
+}
+else if(vakje1 ==2){
+  fill(0,0,255);
+}
 }
 
