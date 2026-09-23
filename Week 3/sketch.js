@@ -52,21 +52,43 @@ function smallrectangle(xPos, yPos, eigenaar) {
   }
   rect(xPos, yPos, 125, 125, 10);
 }
+
+
 function mousePressed() {
-if (mouseButton == LEFT){
- vakje1 = vakje1 +1
-}
-if (vakje1 > 2){
-  vakje1 = 0
-}
-if (vakje1 ==0){
-  fill(200,200,200);
-}
-else if(vakje1 ==1){
-  fill(255,0,0);
-}
-else if(vakje1 ==2){
-  fill(0,0,255);
-}
+ 
+  if (mouseButton == LEFT) {
+ 
+    // vakje linksboven checken
+    if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 70 && mouseY < 70 + 125) {
+      vakje1 = 1
+    }
+
+    if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 70 && mouseY < 70 + 125) {
+      vakje2 = 1
+    }
+    if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 70 && mouseY < 70 + 125) {
+      vakje3 = 1
+    }
+    if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 215 && mouseY < 215 + 125) {
+      vakje4 = 1
+    }
+    if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 215 && mouseY < 215 + 125) {
+      vakje5 = 1
+    }
+    if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 215 && mouseY < 215 + 125) {
+      vakje6 = 1
+    }
+    if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 360 && mouseY <360 + 125) {
+      vakje7 = 1
+    }
+    if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 360 && mouseY < 360 + 125) {
+      vakje8 = 1
+    }
+    if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 360 && mouseY < 360 + 125) {
+      vakje9 = 1
+    }
+  }
+
+
 }
 
