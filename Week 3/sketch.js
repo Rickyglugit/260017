@@ -56,6 +56,9 @@ function mousePressed() {
 if (mouseButton == LEFT){
  vakje1 = vakje1 +1
 }
+if (vakje1 > 2){
+  vakje1 = 0
+}
 if (vakje1 ==0){
   fill(200,200,200);
 }
