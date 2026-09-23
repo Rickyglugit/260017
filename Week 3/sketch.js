@@ -8,6 +8,10 @@ let vakje7 = 0;
 let vakje8 = 0;
 let vakje9 = 0;
 
+let beurt = 1;
+
+
+
 function setup() {
   createCanvas(1300, 550);
 }
@@ -58,37 +62,62 @@ function mousePressed() {
  
   if (mouseButton == LEFT) {
  
-    // vakje linksboven checken
-    if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 70 && mouseY < 70 + 125) {
-      vakje1 = 1
+    // eerste rij
+    if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 70 && mouseY < 70 + 125 && vakje1 == 0) {
+      vakje1 = beurt;
+      wisselBeurtNaarVolgendeSpeler();
     }
 
-    if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 70 && mouseY < 70 + 125) {
-      vakje2 = 1
+    else if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 70 && mouseY < 70 + 125 && vakje2 ==0) {
+      vakje2 = beurt
+      wisselBeurtNaarVolgendeSpeler();
     }
-    if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 70 && mouseY < 70 + 125) {
-      vakje3 = 1
+    else if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 70 && mouseY < 70 + 125 && vakje3 ==0) {
+      vakje3 = beurt
+      wisselBeurtNaarVolgendeSpeler();
     }
-    if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 215 && mouseY < 215 + 125) {
-      vakje4 = 1
+    // tweede rij
+    else if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 215 && mouseY < 215 + 125 && vakje4 ==0) {
+      vakje4 = beurt
+      wisselBeurtNaarVolgendeSpeler();
     }
-    if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 215 && mouseY < 215 + 125) {
-      vakje5 = 1
+    else if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 215 && mouseY < 215 + 125 && vakje5 ==0) {
+      vakje5 = beurt
+      wisselBeurtNaarVolgendeSpeler();
     }
-    if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 215 && mouseY < 215 + 125) {
-      vakje6 = 1
+    else if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 215 && mouseY < 215 + 125 && vakje6 ==0) {
+      vakje6 = beurt
+      wisselBeurtNaarVolgendeSpeler();
+      //derde rij
     }
-    if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 360 && mouseY <360 + 125) {
-      vakje7 = 1
+    else if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 360 && mouseY <360 + 125 && vakje7 ==0) {
+      vakje7 = beurt
+      wisselBeurtNaarVolgendeSpeler();
     }
-    if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 360 && mouseY < 360 + 125) {
-      vakje8 = 1
+    else if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 360 && mouseY < 360 + 125 && vakje8 ==0) {
+      vakje8 = beurt
+      wisselBeurtNaarVolgendeSpeler();
     }
-    if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 360 && mouseY < 360 + 125) {
-      vakje9 = 1
+    else if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 360 && mouseY < 360 + 125 && vakje9 ==0) {
+      vakje9 = beurt
+      wisselBeurtNaarVolgendeSpeler();
     }
   }
+if( vakje1 == 1 && vakje2 == 1 && vakje3 == 1 ){
+line(30,30,30,30);
+fill(0,0,0);
+text("you win",30,30);
+}
 
 
+}
+
+function wisselBeurtNaarVolgendeSpeler() {
+  if (beurt == 1) {
+    beurt = 2;
+  }
+  else if (beurt == 2) {
+    beurt = 1;
+  }
 }
 
