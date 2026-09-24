@@ -297,6 +297,7 @@ function mousePressed() {
 function wisselBeurtNaarVolgendeSpeler() {
   if (beurt == 1) {
     beurt = 2;
+    background(225,225,225,127)
   }
   else if (beurt == 2) {
     beurt = 1;
