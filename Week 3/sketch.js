@@ -20,14 +20,23 @@ function setup() {
 
 function draw() {
   background(220);
+  // zorgt ervoor dat achtergrond kleur aantoont wie aan de beurt is
+  fill(180, 180, 180);
+  rect(0, 0, 1300, 550);
+  if (beurt == 1) {
+    beurtachtergrond(255, 0, 0, 50);
+  }
+  if (beurt == 2) {
+    beurtachtergrond(0, 0, 255, 25);
+  }
   // het platform voor de vakjes
   fill(100, 100, 100);
   strokeWeight(3);
 
   rect(400, 50, 450, 450, 10);
   // de 9 vlakjes
-  //eerste rij
 
+  //eerste rij
   smallrectangle(425, 70, vakje1);
   smallrectangle(563, 70, vakje2);
   smallrectangle(700, 70, vakje3);
@@ -40,8 +49,8 @@ function draw() {
   smallrectangle(563, 360, vakje8);
   smallrectangle(700, 360, vakje9);
 
-
   //player 1 win screen
+  
   // eerste rij horizontaal
   if (vakje1 == 1 && vakje2 == 1 && vakje3 == 1) {
     gameOver = true;
@@ -205,20 +214,22 @@ function draw() {
     fill(0, 0, 255, 127);
     rect(0, 0, 1300, 550);
   }
-
+  // zorgt voor gelijk spel
   if (vakje1 != 0 && vakje2 != 0 && vakje3 != 0 && vakje4 != 0 && vakje5 != 0 && vakje6 != 0
     && vakje7 != 0 && vakje8 != 0 && vakje9 != 0) {
     gameOver = true;
     fill(0, 0, 0)
     textSize(150)
-    text("gelijk spel", 300, 200);
+    text("Draw", 450, 300);
     fill(100, 100, 100, 127);
     rect(0, 0, 1300, 550);
+    beurtachtergrond(50, 50, 50, 75);
   }
-  
+// het restart knopje verschijnt op positie  dat alles weer naar start punt gaat
   if (gameOver == true) {
-    restartbutton(500,350);
+    restartbutton(500, 350);
   }
+
 }
 
 function smallrectangle(xPos, yPos, eigenaar) {
@@ -236,12 +247,13 @@ function smallrectangle(xPos, yPos, eigenaar) {
   else if (eigenaar == 2) {
     fill(0, 0, 255);
   }
+  // het small rectangle zelf
   rect(xPos, yPos, 125, 125, 10);
 }
 
 
 function mousePressed() {
-
+//zorgt dat je op de 9 vakjes kan klikken zonder dat dat gebeurt op heel de canvas
   if (mouseButton == LEFT) {
 
     // eerste rij
@@ -284,7 +296,7 @@ function mousePressed() {
       vakje9 = beurt
       wisselBeurtNaarVolgendeSpeler();
     }
-
+// zorgt dat je op het start knopje kan klikken
     if (gameOver == true) {
       if (mouseX > 500 && mouseX < 500 + 230 && mouseY > 350 && mouseY < 350 + 70) {
         resetGame();
@@ -295,9 +307,9 @@ function mousePressed() {
 }
 
 function wisselBeurtNaarVolgendeSpeler() {
+  // geeft beide spelers beurten
   if (beurt == 1) {
     beurt = 2;
-    background(225,225,225,127)
   }
   else if (beurt == 2) {
     beurt = 1;
@@ -305,17 +317,19 @@ function wisselBeurtNaarVolgendeSpeler() {
 }
 
 function restartbutton(xPos, yPos,) {
+  // het start knopje zelf
   fill(0, 150, 0);
   rect(xPos, yPos, 230, 70, 10);
   fill(0, 255, 0);
   rect(xPos + 5, yPos + 15, 220, 45, 10);
   fill(255, 255, 255);
   textSize(40);
-  text("restart?", xPos + 50, yPos + 50);
+  text("Restart?", xPos + 50, yPos + 50);
 }
 
 function resetGame() {
-  vakje1 = 0; 
+  // zet alles weer up de start positie
+  vakje1 = 0;
   vakje2 = 0;
   vakje3 = 0;
   vakje4 = 0;
@@ -328,5 +342,9 @@ function resetGame() {
   beurt = 1;
 
   gameOver = false;
+}
+function beurtachtergrond(v1, v2, v3, alpha,) {
+  // zorgt voor een transparenten achtergrond om ste beurt voor speler 1 en speler 2
+  background(v1, v2, v3, alpha);
 }
 
