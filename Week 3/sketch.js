@@ -10,6 +10,8 @@ let vakje9 = 0;
 
 let beurt = 1;
 
+let gameOver = false;
+
 
 
 function setup() {
@@ -37,11 +39,12 @@ function draw() {
   smallrectangle(425, 360, vakje7);
   smallrectangle(563, 360, vakje8);
   smallrectangle(700, 360, vakje9);
-  restartbutton(50,50);
+
 
   //player 1 win screen
   // eerste rij horizontaal
   if (vakje1 == 1 && vakje2 == 1 && vakje3 == 1) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -51,6 +54,7 @@ function draw() {
     // tweede rij horizontaal
   }
   if (vakje4 == 1 && vakje5 == 1 && vakje6 == 1) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -60,6 +64,7 @@ function draw() {
     // derde rij horizontaal
   }
   if (vakje7 == 1 && vakje8 == 1 && vakje9 == 1) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -69,6 +74,7 @@ function draw() {
     //eerste rij verticaal
   }
   if (vakje1 == 1 && vakje4 == 1 && vakje7 == 1) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -78,6 +84,7 @@ function draw() {
     //tweede rij verticaal
   }
   if (vakje2 == 1 && vakje5 == 1 && vakje8 == 1) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -87,6 +94,7 @@ function draw() {
     //derde rij verticaal
   }
   if (vakje3 == 1 && vakje6 == 1 && vakje9 == 1) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -96,6 +104,7 @@ function draw() {
     // eerste rij diagonaal
   }
   if (vakje1 == 1 && vakje5 == 1 && vakje9 == 1) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -105,6 +114,7 @@ function draw() {
     // tweede rij diagonaal
   }
   if (vakje3 == 1 && vakje5 == 1 && vakje7 == 1) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -116,6 +126,7 @@ function draw() {
     //eerste rij horizontaal
   }
   if (vakje1 == 2 && vakje2 == 2 && vakje3 == 2) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -125,6 +136,7 @@ function draw() {
     //tweede rij horizontaal
   }
   if (vakje4 == 2 && vakje5 == 2 && vakje6 == 2) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -134,6 +146,7 @@ function draw() {
     //derde rij horizontaal
   }
   if (vakje7 == 2 && vakje8 == 2 && vakje9 == 2) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -143,6 +156,7 @@ function draw() {
     //eerste rij verticaal
   }
   if (vakje1 == 2 && vakje4 == 2 && vakje7 == 2) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -152,6 +166,7 @@ function draw() {
     //tweede rij verticaal
   }
   if (vakje2 == 2 && vakje5 == 2 && vakje8 == 2) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -161,6 +176,7 @@ function draw() {
     //derde rij verticaal
   }
   if (vakje3 == 2 && vakje6 == 2 && vakje9 == 2) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -170,6 +186,7 @@ function draw() {
     //eerste rij diagonaal
   }
   if (vakje1 == 2 && vakje5 == 2 && vakje9 == 2) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -180,6 +197,7 @@ function draw() {
   }
 
   if (vakje3 == 2 && vakje5 == 2 && vakje9 == 2) {
+    gameOver = true;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -187,17 +205,22 @@ function draw() {
     fill(0, 0, 255, 127);
     rect(0, 0, 1300, 550);
   }
-  
-  if( vakje1 != 0 && vakje2 != 0 && vakje3 != 0 && vakje4 != 0 && vakje5 != 0 && vakje6 != 0
-    && vakje7 != 0 && vakje8 != 0 && vakje9 != 0)
-  {
+
+  if (vakje1 != 0 && vakje2 != 0 && vakje3 != 0 && vakje4 != 0 && vakje5 != 0 && vakje6 != 0
+    && vakje7 != 0 && vakje8 != 0 && vakje9 != 0) {
+    gameOver = true;
     fill(0, 0, 0)
     textSize(150)
     text("gelijk spel", 300, 200);
     fill(100, 100, 100, 127);
     rect(0, 0, 1300, 550);
   }
+  
+  if (gameOver == true) {
+    restartbutton(500,350);
+  }
 }
+
 function smallrectangle(xPos, yPos, eigenaar) {
   strokeWeight(3)
 
@@ -261,6 +284,12 @@ function mousePressed() {
       vakje9 = beurt
       wisselBeurtNaarVolgendeSpeler();
     }
+
+    if (gameOver == true) {
+      if (mouseX > 500 && mouseX < 500 + 230 && mouseY > 350 && mouseY < 350 + 70) {
+        resetGame();
+      }
+    }
   }
 
 }
@@ -273,13 +302,30 @@ function wisselBeurtNaarVolgendeSpeler() {
     beurt = 1;
   }
 }
+
 function restartbutton(xPos, yPos,) {
+  fill(0, 150, 0);
+  rect(xPos, yPos, 230, 70, 10);
   fill(0, 255, 0);
-  rect(xPos, yPos, 130, 70, 10);
-  fill(0, 50, 0);
-  rect(xPos, yPos, 120, 60, 10);
+  rect(xPos + 5, yPos + 15, 220, 45, 10);
   fill(255, 255, 255);
-  textSize(75);
-  text("restart?", xPos, yPos);
+  textSize(40);
+  text("restart?", xPos + 50, yPos + 50);
+}
+
+function resetGame() {
+  vakje1 = 0; 
+  vakje2 = 0;
+  vakje3 = 0;
+  vakje4 = 0;
+  vakje5 = 0;
+  vakje6 = 0;
+  vakje7 = 0;
+  vakje8 = 0;
+  vakje9 = 0;
+
+  beurt = 1;
+
+  gameOver = false;
 }
 
