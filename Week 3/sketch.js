@@ -274,36 +274,76 @@ function mousePressed() {
     else if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 70 && mouseY < 70 + 125 && vakje2 == 0) {
       vakje2 = beurt
       wisselBeurtNaarVolgendeSpeler();
+      if (klikkenmp3.isPlaying()) {
+        klikkenmp3.stop();
+      } else {
+        klikkenmp3.play();
+      }
     }
     else if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 70 && mouseY < 70 + 125 && vakje3 == 0) {
       vakje3 = beurt
       wisselBeurtNaarVolgendeSpeler();
+      if (klikkenmp3.isPlaying()) {
+        klikkenmp3.stop();
+      } else {
+        klikkenmp3.play();
+      }
     }
     // tweede rij
     else if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 215 && mouseY < 215 + 125 && vakje4 == 0) {
       vakje4 = beurt
       wisselBeurtNaarVolgendeSpeler();
+      if (klikkenmp3.isPlaying()) {
+        klikkenmp3.stop();
+      } else {
+        klikkenmp3.play();
+      }
     }
     else if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 215 && mouseY < 215 + 125 && vakje5 == 0) {
       vakje5 = beurt
       wisselBeurtNaarVolgendeSpeler();
+      if (klikkenmp3.isPlaying()) {
+        klikkenmp3.stop();
+      } else {
+        klikkenmp3.play();
+      }
     }
     else if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 215 && mouseY < 215 + 125 && vakje6 == 0) {
       vakje6 = beurt
       wisselBeurtNaarVolgendeSpeler();
+      if (klikkenmp3.isPlaying()) {
+        klikkenmp3.stop();
+      } else {
+        klikkenmp3.play();
+      }
       //derde rij
     }
     else if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 360 && mouseY < 360 + 125 && vakje7 == 0) {
       vakje7 = beurt
       wisselBeurtNaarVolgendeSpeler();
+      if (klikkenmp3.isPlaying()) {
+        klikkenmp3.stop();
+      } else {
+        klikkenmp3.play();
+      }
     }
     else if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 360 && mouseY < 360 + 125 && vakje8 == 0) {
       vakje8 = beurt
       wisselBeurtNaarVolgendeSpeler();
+      if (klikkenmp3.isPlaying()) {
+        klikkenmp3.stop();
+      } else {
+        klikkenmp3.play();
+      }
     }
     else if (mouseX > 700 && mouseX < 700 + 125 && mouseY > 360 && mouseY < 360 + 125 && vakje9 == 0) {
       vakje9 = beurt
       wisselBeurtNaarVolgendeSpeler();
+      if (klikkenmp3.isPlaying()) {
+        klikkenmp3.stop();
+      } else {
+        klikkenmp3.play();
+      }
     }
 
   }
