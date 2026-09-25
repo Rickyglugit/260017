@@ -10,8 +10,9 @@ let vakje9 = 0;
 
 let beurt = 1;
 
-let gameOver = false;
+let gameOver = 0;
 
+let klikkenmp3;
 
 
 function setup() {
@@ -50,10 +51,10 @@ function draw() {
   smallrectangle(700, 360, vakje9);
 
   //player 1 win screen
-  
+
   // eerste rij horizontaal
   if (vakje1 == 1 && vakje2 == 1 && vakje3 == 1) {
-    gameOver = true;
+    gameOver = 1;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -63,7 +64,7 @@ function draw() {
     // tweede rij horizontaal
   }
   if (vakje4 == 1 && vakje5 == 1 && vakje6 == 1) {
-    gameOver = true;
+    gameOver = 1;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -73,7 +74,7 @@ function draw() {
     // derde rij horizontaal
   }
   if (vakje7 == 1 && vakje8 == 1 && vakje9 == 1) {
-    gameOver = true;
+    gameOver = 1;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -83,7 +84,7 @@ function draw() {
     //eerste rij verticaal
   }
   if (vakje1 == 1 && vakje4 == 1 && vakje7 == 1) {
-    gameOver = true;
+    gameOver = 1;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -93,7 +94,7 @@ function draw() {
     //tweede rij verticaal
   }
   if (vakje2 == 1 && vakje5 == 1 && vakje8 == 1) {
-    gameOver = true;
+    gameOver = 1;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -103,7 +104,7 @@ function draw() {
     //derde rij verticaal
   }
   if (vakje3 == 1 && vakje6 == 1 && vakje9 == 1) {
-    gameOver = true;
+    gameOver = 1;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -113,7 +114,7 @@ function draw() {
     // eerste rij diagonaal
   }
   if (vakje1 == 1 && vakje5 == 1 && vakje9 == 1) {
-    gameOver = true;
+    gameOver = 1;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -123,7 +124,7 @@ function draw() {
     // tweede rij diagonaal
   }
   if (vakje3 == 1 && vakje5 == 1 && vakje7 == 1) {
-    gameOver = true;
+    gameOver = 1;
     line(30, 30, 30, 30);
     fill(200, 0, 0);
     textSize(150)
@@ -135,7 +136,7 @@ function draw() {
     //eerste rij horizontaal
   }
   if (vakje1 == 2 && vakje2 == 2 && vakje3 == 2) {
-    gameOver = true;
+    gameOver = 2;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -145,7 +146,7 @@ function draw() {
     //tweede rij horizontaal
   }
   if (vakje4 == 2 && vakje5 == 2 && vakje6 == 2) {
-    gameOver = true;
+    gameOver = 2;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -155,7 +156,7 @@ function draw() {
     //derde rij horizontaal
   }
   if (vakje7 == 2 && vakje8 == 2 && vakje9 == 2) {
-    gameOver = true;
+    gameOver = 2;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -165,7 +166,7 @@ function draw() {
     //eerste rij verticaal
   }
   if (vakje1 == 2 && vakje4 == 2 && vakje7 == 2) {
-    gameOver = true;
+    gameOver = 2;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -175,7 +176,7 @@ function draw() {
     //tweede rij verticaal
   }
   if (vakje2 == 2 && vakje5 == 2 && vakje8 == 2) {
-    gameOver = true;
+    gameOver = 2;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -185,7 +186,7 @@ function draw() {
     //derde rij verticaal
   }
   if (vakje3 == 2 && vakje6 == 2 && vakje9 == 2) {
-    gameOver = true;
+    gameOver = 2;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -195,7 +196,7 @@ function draw() {
     //eerste rij diagonaal
   }
   if (vakje1 == 2 && vakje5 == 2 && vakje9 == 2) {
-    gameOver = true;
+    gameOver = 2;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -206,7 +207,7 @@ function draw() {
   }
 
   if (vakje3 == 2 && vakje5 == 2 && vakje9 == 2) {
-    gameOver = true;
+    gameOver = 2;
     line(30, 30, 30, 30);
     fill(0, 0, 200);
     textSize(150)
@@ -216,8 +217,8 @@ function draw() {
   }
   // zorgt voor gelijk spel
   if (vakje1 != 0 && vakje2 != 0 && vakje3 != 0 && vakje4 != 0 && vakje5 != 0 && vakje6 != 0
-    && vakje7 != 0 && vakje8 != 0 && vakje9 != 0) {
-    gameOver = true;
+    && vakje7 != 0 && vakje8 != 0 && vakje9 != 0 && (gameOver == 0 || gameOver == 3)) {
+    gameOver = 3;
     fill(0, 0, 0)
     textSize(150)
     text("Draw", 450, 300);
@@ -225,8 +226,8 @@ function draw() {
     rect(0, 0, 1300, 550);
     beurtachtergrond(50, 50, 50, 75);
   }
-// het restart knopje verschijnt op positie  dat alles weer naar start punt gaat
-  if (gameOver == true) {
+  // het restart knopje verschijnt op positie  dat alles weer naar start punt gaat
+  if (gameOver != 0) {
     restartbutton(500, 350);
   }
 
@@ -253,13 +254,21 @@ function smallrectangle(xPos, yPos, eigenaar) {
 
 
 function mousePressed() {
-//zorgt dat je op de 9 vakjes kan klikken zonder dat dat gebeurt op heel de canvas
-  if (mouseButton == LEFT) {
+  //zorgt dat je op de 9 vakjes kan klikken zonder dat dat gebeurt op heel de canvas
+  // gameOver == false zorgt ervoor dat je niet meer kan klikken op de vakjes
+  // als het spel voorbij is! Als het spel NIET voorbij is, dan mag je wel klikken!
+  if (mouseButton == LEFT && gameOver == 0) {
 
     // eerste rij
     if (mouseX > 425 && mouseX < 425 + 125 && mouseY > 70 && mouseY < 70 + 125 && vakje1 == 0) {
       vakje1 = beurt;
       wisselBeurtNaarVolgendeSpeler();
+      if (klikkenmp3.isPlaying()) {
+        klikkenmp3.stop();
+      } else {
+        klikkenmp3.play();
+      }
+
     }
 
     else if (mouseX > 563 && mouseX < 563 + 125 && mouseY > 70 && mouseY < 70 + 125 && vakje2 == 0) {
@@ -296,14 +305,15 @@ function mousePressed() {
       vakje9 = beurt
       wisselBeurtNaarVolgendeSpeler();
     }
-// zorgt dat je op het start knopje kan klikken
-    if (gameOver == true) {
-      if (mouseX > 500 && mouseX < 500 + 230 && mouseY > 350 && mouseY < 350 + 70) {
-        resetGame();
-      }
-    }
+
   }
 
+  // Reset the game
+  // zorgt dat je op het start knopje kan klikken
+  if (gameOver != 0 && mouseButton == "left" && mouseX > 500 &&
+    mouseX < 500 + 230 && mouseY > 350 && mouseY < 350 + 70) {
+    resetGame();
+  }
 }
 
 function wisselBeurtNaarVolgendeSpeler() {
@@ -341,10 +351,13 @@ function resetGame() {
 
   beurt = 1;
 
-  gameOver = false;
+  gameOver = 0
 }
 function beurtachtergrond(v1, v2, v3, alpha,) {
   // zorgt voor een transparenten achtergrond om ste beurt voor speler 1 en speler 2
   background(v1, v2, v3, alpha);
 }
-
+function preload() {
+  klikkenmp3 = loadSound('Click Sound Effect.mp3');
+  console.log
+}
