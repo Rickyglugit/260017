@@ -5,8 +5,9 @@ function setup() {
 
 function draw() {
   let colors = ['red', 'green', 'blue', 'purple', 'yellow']
-  let numbers =[]
-
+  let numbers = [400, 240, 10, 490, 30, 60, 244, 500, 301, 300]
+  let nummercomb1 = [3, 55, 93, 20, 102, 6]
+  let nummercomb2 = [ 14, 22, 80,5]
   background(220);
   // opdracht 1
   fill(0, 0, 0);
@@ -35,4 +36,17 @@ function draw() {
   //opdracht 4
   fill(0, 0, 0);
   text("4", 20, 300);
+  let positie = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] <= 300) {
+      text(numbers[i], 20, 320 + positie * 10);
+      positie = positie + 1;
+    }
+  }
+  //opdracht 5
+  fill(0, 0, 0);
+  text("5", 100, 15);
+ for (let i = 0; i < nummercomb1.length && nummercomb2.length; i++){
+text(nummercomb1 + nummercomb2,80,40)
+ }
 }
