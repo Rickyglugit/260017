@@ -1,8 +1,8 @@
-let rood = false
+
+
 function setup() {
   createCanvas(800, 400);
 }
-
 function draw() {
   background(220);
   strokeWeight(1);
@@ -60,8 +60,36 @@ function draw() {
   text("6", 450, 100);
   fill('white');
   for (let s = 0; s < 10; s++) {
-    circle(525,200,200-s*20)
+    if (s % 2 == 0) {
+      fill('red');
+    }
+    else {
+      fill('white');
+    }
+    circle(525, 200, 200 - s * 20);
+  }
+  //opdracht7
+  fill(0, 0, 0);
+  text("7", 600, 100);
+  fill('grey');
+  for (let g = 0; g < 21; g++) {
+    if (g % 2 == 1) {
+      fill('white');
+    }
+    else {
+      fill('grey');
+    }
 
-}
+    // Standaard breedte bij het steeds langer worden
+    let breedte = 30 + g * 10;
+
+    // Als we over de helft zijn, dan moet ie kleiner worden
+    if (g > 11){
+      breedte = 140 - (g - 11) * 10;
+    }
+
+    rect(650, 100 + g * 10, breedte , 10);
+
+  }
 
 }
