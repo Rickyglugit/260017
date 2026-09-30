@@ -9,6 +9,7 @@ function draw() {
   let nummercomb1 = [3, 55, 93, 20, 102, 6];
   let nummercomb2 = [14, 22, 80, 5];
   let woord = 'Overheidsfinancieringstekort';
+  let alfcolors = ['red', 'green', 'blue', 'purple', 'yellow']
 
   background(220);
   // opdracht 1
@@ -63,8 +64,21 @@ function draw() {
   text("6", 100, 65);
   let eCounter = 0;
   for (let i = 0; i < woord.length; i++) {
-    if(woord[i] == "e"){
+    if (woord[i] == "e") {
       eCounter = eCounter + 1;
     }
   }
+  text(eCounter, 110, 80);
+
+  //opdracht7
+  fill(0, 0, 0);
+  text("7", 100, 95);
+ alfcolors= alfcolors.sort()
+  for (let i = 0; i < alfcolors.length; i++) {
+    fill(alfcolors[i])
+    text(alfcolors[i], 100, 115+ i * 20);
+  }
+//opdracht8
+fill(0, 0, 0);
+  text("8", 100, 215);
 } 
