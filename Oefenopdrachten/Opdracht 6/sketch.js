@@ -4,10 +4,12 @@ function setup() {
 }
 
 function draw() {
-  let colors = ['red', 'green', 'blue', 'purple', 'yellow']
-  let numbers = [400, 240, 10, 490, 30, 60, 244, 500, 301, 300]
-  let nummercomb1 = [3, 55, 93, 20, 102, 6]
-  let nummercomb2 = [ 14, 22, 80,5]
+  let colors = ['red', 'green', 'blue', 'purple', 'yellow'];
+  let numbers = [400, 240, 10, 490, 30, 60, 244, 500, 301, 300];
+  let nummercomb1 = [3, 55, 93, 20, 102, 6];
+  let nummercomb2 = [14, 22, 80, 5];
+  let woord = 'Overheidsfinancieringstekort';
+
   background(220);
   // opdracht 1
   fill(0, 0, 0);
@@ -46,7 +48,23 @@ function draw() {
   //opdracht 5
   fill(0, 0, 0);
   text("5", 100, 15);
- for (let i = 0; i < nummercomb1.length && nummercomb2.length; i++){
-text(nummercomb1 + nummercomb2,80,40)
- }
-}
+  let antwoord = 0
+  for (let i = 0; i < nummercomb1.length; i++) {
+    antwoord = antwoord + nummercomb1[i];
+
+    if (i < nummercomb2.length) {
+      antwoord = antwoord + nummercomb2[i];
+    }
+  }
+  text(antwoord, 110, 40);
+
+  //opdracht6
+  fill(0, 0, 0);
+  text("6", 100, 65);
+  let eCounter = 0;
+  for (let i = 0; i < woord.length; i++) {
+    if(woord[i] == "e"){
+      eCounter = eCounter + 1;
+    }
+  }
+} 
