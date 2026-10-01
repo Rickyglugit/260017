@@ -1,10 +1,16 @@
 let randomcolor = []
 
+let cijfers = []
 
 function setup() {
   for (let i = 0; i < 5; i++) {
     randomcolor.push([random(0, 255), random(0, 255), random(0, 255)])
   }
+  for (let i = 0; i < 12; i++) {
+    cijfers.push(round(random(0, 100)))
+
+  }
+
   createCanvas(380, 450);
 }
 
@@ -91,7 +97,18 @@ function draw() {
   for (let i = 0; i < 5; i++) {
     fill(randomcolor[i]);
     rect(80 + i * 20, 250, 20, 20);
+    
   }
- fill(0, 0, 0);
+  //opdracht9
+  fill(0, 0, 0);
   text("9", 250, 15);
+  let totaal = 0
+  for (let i = 0; i < 12; i++) {
+    text(cijfers[i], 250, 50 + i * 10);
+    if (i < cijfers.length) {
+      totaal = totaal + cijfers[i];
+    }      
+  }
+text(totaal, 245, 185);
+
 } 
