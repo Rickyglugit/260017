@@ -1,5 +1,10 @@
+let randomcolor = []
+
 
 function setup() {
+  for (let i = 0; i < 5; i++) {
+    randomcolor.push([random(0, 255), random(0, 255), random(0, 255)])
+  }
   createCanvas(380, 450);
 }
 
@@ -10,6 +15,7 @@ function draw() {
   let nummercomb2 = [14, 22, 80, 5];
   let woord = 'Overheidsfinancieringstekort';
   let alfcolors = ['red', 'green', 'blue', 'purple', 'yellow']
+
 
   background(220);
   // opdracht 1
@@ -73,12 +79,19 @@ function draw() {
   //opdracht7
   fill(0, 0, 0);
   text("7", 100, 95);
- alfcolors= alfcolors.sort()
+  alfcolors = alfcolors.sort()
   for (let i = 0; i < alfcolors.length; i++) {
     fill(alfcolors[i])
-    text(alfcolors[i], 100, 115+ i * 20);
+    text(alfcolors[i], 100, 115 + i * 20);
   }
-//opdracht8
-fill(0, 0, 0);
+  //opdracht8
+  fill(0, 0, 0);
   text("8", 100, 215);
+  fill(255, 255, 255);
+  for (let i = 0; i < 5; i++) {
+    fill(randomcolor[i]);
+    rect(80 + i * 20, 250, 20, 20);
+  }
+ fill(0, 0, 0);
+  text("9", 250, 15);
 } 
