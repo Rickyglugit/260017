@@ -26,13 +26,11 @@ function setup() {
 function draw() {
   background(220);
   for (let i = 0; i < 100; i++) {
+    rect(rectXPos[i], rectYpos[i], size)
     circle(xPosities[i], yPosities[i], size);
     rect(rectXPos,rectYpos,50,50)
     fill(kleuren[i]);
-    if (size == - 100) {
-      xPosities[i] = random(100, 700);
-      yPosities[i] = random(100, 500);
-    }
+
   }
   size = size + 1;
   if (size == 50) {
