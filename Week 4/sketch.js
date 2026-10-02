@@ -5,30 +5,38 @@ let kleuren = []
 
 let xPosities = []
 let yPosities = []
+let rectXPos = []
+let rectYpos = []
+
 function setup() {
   createCanvas(800, 600);
   frameRate(20);
-  strokeWeight(0)
+  strokeWeight(0);
 
 
   // Kleuren array vullen (met push) met random kleuren
   for (let i = 0; i < 100; i++) {
-    kleuren.push([random(0, 255), random(0, 255), random(0, 255)])
-    xPosities.push(random(100, 700))
-    yPosities.push(random(100, 500))
+    kleuren.push([random(0, 255), random(0, 255), random(0, 255)]);
+    xPosities.push(random(100, 700));
+    yPosities.push(random(100, 500));
+    rectXPos.push(random(100, 600));
+    rectYpos.push(random(100, 400));
   }
 }
 function draw() {
   background(220);
   for (let i = 0; i < 100; i++) {
     circle(xPosities[i], yPosities[i], size);
-    fill(kleuren[i])
+    rect(rectXPos,rectYpos,50,50)
+    fill(kleuren[i]);
+    if (size == - 100) {
+      xPosities[i] = random(100, 700);
+      yPosities[i] = random(100, 500);
+    }
   }
   size = size + 1;
   if (size == 50) {
-    size = size - 1
+    size = size - 100;
   }
 }
-function mousepressed(){
 
-}
