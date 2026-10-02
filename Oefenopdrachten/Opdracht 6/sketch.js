@@ -97,18 +97,22 @@ function draw() {
   for (let i = 0; i < 5; i++) {
     fill(randomcolor[i]);
     rect(80 + i * 20, 250, 20, 20);
-    
+
   }
   //opdracht9
   fill(0, 0, 0);
   text("9", 250, 15);
   let totaal = 0
+  let gem = 0
   for (let i = 0; i < 12; i++) {
     text(cijfers[i], 250, 50 + i * 10);
     if (i < cijfers.length) {
       totaal = totaal + cijfers[i];
-    }      
+    }
+    if (i < cijfers.length) {
+      gem = round(totaal/12)
+    }
   }
-text(totaal, 245, 185);
-
+  text(totaal, 245, 185);
+   text(gem, 245, 200);
 } 
