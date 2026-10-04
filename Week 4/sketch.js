@@ -33,9 +33,7 @@ function draw() {
     circle(xPosities[i], yPosities[i], size);
     rect(rectXPos, rectYpos, 50, 50);
     fill(kleuren[i]);
-    if (i == 100){
-      kleuren = random(0,255)
-    }
+ 
 // zorgt ervoor dat de vormen van klein naar groot gaan en weer terug
   }
   size = size + 1;
