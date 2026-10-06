@@ -110,7 +110,7 @@ function draw() {
   text(timer, 1100, 250);
 
   let huidigeVraag = vragen[questionturn];
-  text(huidigeVraag.vraagTekst, 200, 100);
+  text(huidigeVraag.vraagTekst, 30, 100);
   image(huidigeVraag.plaatje, 850, 50, 200, 200);
 
   // Stappenplan voor Ricky
@@ -130,11 +130,12 @@ function answerbutton(x, y) {
 function questionpanel(x, y) {
   rect(x, y, 1215, 250, 10);
 }
-function mousepressed() {
+function mousePressed() {
   if (mouseButton == LEFT) {
 
     if (mouseX > 20 && mouseX < 20 + 600 && mouseY > 430 && mouseY < 430 + 100) {
       questionturn += 1;
+      answerbutton1color = 'gray'
     }
     else if (mouseX > 635 && mouseX < 635 + 600 && mouseY > 430 && mouseY < 430 + 100) {
       questionturn += 1;
