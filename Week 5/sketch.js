@@ -6,7 +6,7 @@ let answerbutton3color = 'white'
 let answerbutton4color = 'white'
 let questionpanelcolor = 'white'
 
- let questionturn = 10
+ let questionturn = 0
 
  let vraagtekenplaatje;
  let italiaansevlag;
@@ -18,6 +18,7 @@ let questionpanelcolor = 'white'
 
 function setup() {
   createCanvas(1255, 550);
+
 }
 
 function draw() {
