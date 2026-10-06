@@ -6,19 +6,83 @@ let answerbutton3color = 'white'
 let answerbutton4color = 'white'
 let questionpanelcolor = 'white'
 
- let questionturn = 0
+let questionturn = 0
 
- let vraagtekenplaatje;
- let italiaansevlag;
- let sierreleonevlag;
- let shift;
- let canadavlag;
- let romeinserijk;
- let code
+let vraagtekenplaatje;
+let italiaansevlag;
+let sierreleonevlag;
+let shift;
+let canadavlag;
+let romeinserijk;
+let code
+
+let vragen = [];
 
 function setup() {
   createCanvas(1255, 550);
 
+  vragen = [
+    {
+      vraagTekst: "Hoeveel minuten zit er in een uur?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 1,
+      plaatje: vraagtekenplaatje
+    },
+    {
+      vraagTekst: "Bij welk land behoort deze vlag?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 2,
+      plaatje: italiaansevlag
+    },
+    {
+      vraagTekst: "Bij welk land behoord deze vlag?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 1,
+      plaatje: sierreleonevlag
+    },
+    {
+      vraagTekst: "Hoeveel inwoners heeft Nederland?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 1,
+      plaatje: vraagtekenplaatje
+    },
+    {
+      vraagTekst: "Welke knop wordt hier ingedrukt?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 1,
+      plaatje: shift
+    },
+    {
+      vraagTekst: "welk land behoort tot deze vlag?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 1,
+      plaatje: canadavlag
+    },
+    {
+      vraagTekst: "wie is  nu de premier van Nederland(2026)?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 1,
+      plaatje: vraagtekenplaatje
+    },
+    {
+      vraagTekst: "wat betekent 'wie geht's' in het Nederlands?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 1,
+      plaatje: vraagtekenplaatje
+    },
+    {
+      vraagTekst: "wie was de eerste leider van het romeinserijk?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 1,
+      plaatje: romeinserijk
+    },
+    {
+      vraagTekst: "welke vorm maak je met de code 'rect'?",
+      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      goedeAntwoord: 1,
+      plaatje: code
+    },
+  ]
 }
 
 function draw() {
@@ -37,91 +101,59 @@ function draw() {
   fill(answerbutton4color);
   answerbutton(635, 320);
 
-//de plek waar de vragen te zien zijn
-fill(questionpanelcolor);
-questionpanel(20,20);
-// de timer die aangeeft hoeveel seconden je hebt per vraag
-fill(0,0,0);
-textSize(40);
-text(timer,1100,250);
+  //de plek waar de vragen te zien zijn
+  fill(questionpanelcolor);
+  questionpanel(20, 20);
+  // de timer die aangeeft hoeveel seconden je hebt per vraag
+  fill(0, 0, 0);
+  textSize(40);
+  text(timer, 1100, 250);
 
-// questionturn wisselt per vraag
-if (questionturn == 0){
-  text("hoeveel minuten zit er in een uur?",200,100);
-  image(vraagtekenplaatje,850, 50, 200, 200);
-}
-else if(questionturn == 1){
-  text("bij welk land behoort deze vlag?",200,100);
-  image (italiaansevlag,850, 50, 200, 200)
-}
-else if(questionturn == 2){
-  text("bij welk land behoord deze vlag?",200,100);
-  image (sierreleonevlag,850, 50, 200, 200)
-}
-else if (questionturn == 3){
-  text("hoeveel inwoners heeft Nederland?",200,100);
-  image(vraagtekenplaatje,850, 50, 200, 200);
-}
-else if (questionturn == 4){
-  text("welke knop wordt hier ingedrukt?",200,100);
-  image(shift,850, 50, 200, 200);
-}
-else if (questionturn == 5){
-  text("hoeveel seconden zitten er in een uur?",100,100);
-  image(vraagtekenplaatje,850, 50, 200, 200);
-}
-else if (questionturn == 6){
-  text("welk land behoort tot deze vlag?",200,100);
-  image(canadavlag,850, 50, 200, 200);
-}
-else if (questionturn == 7){
-  text("wie is  nu de premier van Nederland(2026)?",50,100);
-  image(vraagtekenplaatje,850, 50, 200, 200);
-}
-else if (questionturn == 8){
-  text("wat betekent 'wie geht's' in het Nederlands?",50,100);
-  image(vraagtekenplaatje,850, 50, 200, 200);
-}
-else if (questionturn == 9){
-  text("wie was de eerste leider van het romeinserijk?",30,100);
-  image(romeinserijk,850, 50, 200, 200);
-}
-else if (questionturn == 10){
-  text("welke vorm maak je met de code 'rect'?",30,100);
-  image(code,850, 50, 200, 200);
-}
+  let huidigeVraag = vragen[questionturn];
+  text(huidigeVraag.vraagTekst, 200, 100);
+  image(huidigeVraag.plaatje, 850, 50, 200, 200);
+
+  // Stappenplan voor Ricky
+  // 1. Vragen array vullen met JOUW vragen en antwoorden (en plaatjes)
+  // 2. Zorgen dat als je op een antwoord klikt, dat hij dan door gaat naar de volgende vraag
+  // (oftewel, questionturn veranderen.) Maak je nog geen zorgen om dat het antwoord goed moet zijn.
+  // 3. Daadwerkelijk checken of de gebruiker op het goede antwoord klikt!
+  // 4. Score bijhouden van hoeveel vragen je goed hebt!
+
+
+
 }
 
 function answerbutton(x, y) {
   rect(x, y, 600, 100, 10);
 }
 function questionpanel(x, y) {
-  rect(x, y ,1215,250,10);
+  rect(x, y, 1215, 250, 10);
 }
-function mousepressed(){
-  if (mouseButton == LEFT){
+function mousepressed() {
+  if (mouseButton == LEFT) {
 
-   if (mouseX > 20 && mouseX < 20 + 600 && mouseY > 430 && mouseY < 430 + 100){
-    questionturn+1;
-   }
-   else if (mouseX > 635 && mouseX < 635 + 600 && mouseY > 430 && mouseY < 430 + 100){
-
-   }
-   else if (mouseX > 20 && mouseX < 20 + 600 && mouseY > 320 && mouseY < 320 + 100){
-
-   }
-   else if (mouseX > 635 && mouseX < 635 + 600 && mouseY > 320 && mouseY < 320 + 100){
-
-   }
+    if (mouseX > 20 && mouseX < 20 + 600 && mouseY > 430 && mouseY < 430 + 100) {
+      questionturn += 1;
+    }
+    else if (mouseX > 635 && mouseX < 635 + 600 && mouseY > 430 && mouseY < 430 + 100) {
+      questionturn += 1;
+    }
+    else if (mouseX > 20 && mouseX < 20 + 600 && mouseY > 320 && mouseY < 320 + 100) {
+      questionturn += 1;
+    }
+    else if (mouseX > 635 && mouseX < 635 + 600 && mouseY > 320 && mouseY < 320 + 100) {
+      questionturn += 1;
+    }
   }
 }
-function preload(){
-vraagtekenplaatje = loadImage('vraagteken.png');
-italiaansevlag = loadImage('italy.png');
-sierreleonevlag = loadImage('siere leone.png');
-shift = loadImage('toetsenbord.webp');
-canadavlag = loadImage('canada.webp');
-romeinserijk = loadImage('romeinsrijk.webp');
-code = loadImage('coding.webp')
+function preload() {
+  vraagtekenplaatje = loadImage('vraagteken.png');
+  italiaansevlag = loadImage('italy.png');
+  sierreleonevlag = loadImage('siere leone.png');
+  shift = loadImage('toetsenbord.webp');
+  canadavlag = loadImage('canada.webp');
+  romeinserijk = loadImage('romeinsrijk.webp');
+  code = loadImage('coding.webp')
 
 }
