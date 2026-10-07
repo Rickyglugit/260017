@@ -111,8 +111,34 @@ function draw() {
 
   let huidigeVraag = vragen[questionturn];
   text(huidigeVraag.vraagTekst, 30, 100);
+  text(huidigeVraag.antwoorden,20,300);
   image(huidigeVraag.plaatje, 850, 50, 200, 200);
 
+//hover effect over de buttons
+  if (mouseX > 20 && mouseX < 20 + 600 && mouseY > 430 && mouseY < 430 + 100) {
+    answerbutton1color = 'gray'
+  }
+  else { 
+    answerbutton1color = 'white'
+  }
+  if (mouseX > 635 && mouseX < 635 + 600 && mouseY > 430 && mouseY < 430 + 100) {
+    answerbutton2color = 'gray'
+  }
+  else {
+    answerbutton2color = 'white'
+  }
+  if(mouseX > 20 && mouseX < 20 + 600 && mouseY > 320 && mouseY < 320 + 100) {
+     answerbutton3color = 'gray'
+  }
+  else {
+    answerbutton3color = 'white'
+  }
+   if (mouseX > 635 && mouseX < 635 + 600 && mouseY > 320 && mouseY < 320 + 100){
+     answerbutton4color = 'gray'
+  }
+  else {
+    answerbutton4color = 'white'
+   }
   // Stappenplan voor Ricky
   // 1. Vragen array vullen met JOUW vragen en antwoorden (en plaatjes)
   // 2. Zorgen dat als je op een antwoord klikt, dat hij dan door gaat naar de volgende vraag
@@ -135,7 +161,6 @@ function mousePressed() {
 
     if (mouseX > 20 && mouseX < 20 + 600 && mouseY > 430 && mouseY < 430 + 100) {
       questionturn += 1;
-      answerbutton1color = 'gray'
     }
     else if (mouseX > 635 && mouseX < 635 + 600 && mouseY > 430 && mouseY < 430 + 100) {
       questionturn += 1;
