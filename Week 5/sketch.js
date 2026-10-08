@@ -24,61 +24,61 @@ function setup() {
   vragen = [
     {
       vraagTekst: "Hoeveel minuten zit er in een uur?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["60 minuten", "60 seconden", "67 minuten C", "3599 seconden"],
       goedeAntwoord: 1,
       plaatje: vraagtekenplaatje
     },
     {
       vraagTekst: "Bij welk land behoort deze vlag?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["Italië", "Mexico", "Ierland", "Rusland"],
       goedeAntwoord: 2,
       plaatje: italiaansevlag
     },
     {
       vraagTekst: "Bij welk land behoord deze vlag?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["Nederland", "Sierre leone", "Ijsland ", "Japan "],
       goedeAntwoord: 1,
       plaatje: sierreleonevlag
     },
     {
       vraagTekst: "Hoeveel inwoners heeft Nederland?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["67mil", "18 mil", "21 mil", "5 mil"],
       goedeAntwoord: 1,
       plaatje: vraagtekenplaatje
     },
     {
       vraagTekst: "Welke knop wordt hier ingedrukt?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["ctrl", "spatie", "Alt", "Shift"],
       goedeAntwoord: 1,
       plaatje: shift
     },
     {
       vraagTekst: "welk land behoort tot deze vlag?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["America", "Canada", "Mexico", "Yemen"],
       goedeAntwoord: 1,
       plaatje: canadavlag
     },
     {
       vraagTekst: "wie is  nu de premier van Nederland(2026)?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["Rob Jetten", "Jesse Klaver", "Mark rutte", "Dick schoof"],
       goedeAntwoord: 1,
       plaatje: vraagtekenplaatje
     },
     {
       vraagTekst: "wat betekent 'wie geht's' in het Nederlands?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["Hoe gaat het?", "Waar ben je?", "Wie ben je?", "Waar is de trein?"],
       goedeAntwoord: 1,
       plaatje: vraagtekenplaatje
     },
     {
       vraagTekst: "wie was de eerste leider van het romeinserijk?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["Octavius", "Julius caesar", "Napoleon", "Didius"],
       goedeAntwoord: 1,
       plaatje: romeinserijk
     },
     {
       vraagTekst: "welke vorm maak je met de code 'rect'?",
-      antwoorden: ["Antwoord A", "Antwoord B", "Antwoord C", "Antwoord D"],
+      antwoorden: ["vierkant", "Rechthoek", "Balk", "driehoek"],
       goedeAntwoord: 1,
       plaatje: code
     },
@@ -111,8 +111,12 @@ function draw() {
 
   let huidigeVraag = vragen[questionturn];
   text(huidigeVraag.vraagTekst, 30, 100);
-  text(huidigeVraag.antwoorden,20,300);
+  text(huidigeVraag.antwoorden[0],170,390);
+  text(huidigeVraag.antwoorden[1],820,390);
+  text(huidigeVraag.antwoorden[2],170,490);
+  text(huidigeVraag.antwoorden[3],820,490);
   image(huidigeVraag.plaatje, 850, 50, 200, 200);
+
 
 //hover effect over de buttons
   if (mouseX > 20 && mouseX < 20 + 600 && mouseY > 430 && mouseY < 430 + 100) {
@@ -145,7 +149,6 @@ function draw() {
   // (oftewel, questionturn veranderen.) Maak je nog geen zorgen om dat het antwoord goed moet zijn.
   // 3. Daadwerkelijk checken of de gebruiker op het goede antwoord klikt!
   // 4. Score bijhouden van hoeveel vragen je goed hebt!
-
 
 
 }
