@@ -47,12 +47,10 @@ function setup() {
   answer4Button.size(600, 100);
   answer4Button.mousePressed(buttonAnswer4Pressed);
 
-
   nextquestion = createButton("volgende vraag")
-  nextquestion.position(500, 150);
+  nextquestion.position(-500, -500);
   nextquestion.size(100, 50);
   nextquestion.mousePressed(nextquestionbutton);
-
 
 
   vragen = [
@@ -121,63 +119,8 @@ function setup() {
 
 }
 
-function buttonAnswer1Pressed() {
-
-  // Lees de huidige vraag (data object)
-  let huidigeVraag = vragen[questionturn];
-
-  // Als het goede antwoord 0 is, dan hoort dat bij deze knop, en wordt ie groen.
-  if (huidigeVraag.goedeAntwoord == 0) {
-    answer1Button.style("background-color", "green");
-    nextquestion.show();
-  }
-  else {
-    answer1Button.style("background-color", "red");
-  }
-
-}
-function buttonAnswer2Pressed() {
-
-  let huidigeVraag = vragen[questionturn];
-
-  if (huidigeVraag.goedeAntwoord == 1) {
-    answer2Button.style("background-color", "green");
-    nextquestion.show();
-  }
-  else {
-    answer2Button.style("background-color", "red");
-  }
-
-}
-function buttonAnswer3Pressed() {
-  let huidigeVraag = vragen[questionturn];
-
-  if (huidigeVraag.goedeAntwoord == 2) {
-    answer3Button.style("background-color", "green");
-    nextquestion.show();
-  }
-  else {
-    answer3Button.style("background-color", "red");
-  }
-
-}
-function buttonAnswer4Pressed() {
-  let huidigeVraag = vragen[questionturn];
-
-  if (huidigeVraag.goedeAntwoord == 3) {
-    answer4Button.style("background-color", "green");
-    nextquestion.show();
-  }
-  else {
-    answer4Button.style("background-color", "red");
-    nextquestion.show();
-  }
-
-}
-
 function draw() {
   background(220);
-
 
   //de plek waar de vragen te zien zijn
   fill(questionpanelcolor);
@@ -190,6 +133,7 @@ function draw() {
   let huidigeVraag = vragen[questionturn];
   text(huidigeVraag.vraagTekst, 30, 100);
 
+
   answer1Button.html(huidigeVraag.antwoorden[0]);
   answer2Button.html(huidigeVraag.antwoorden[1]);
   answer3Button.html(huidigeVraag.antwoorden[2]);
@@ -198,14 +142,9 @@ function draw() {
   image(huidigeVraag.plaatje, 850, 50, 200, 200);
 
   // Stappenplan voor Ricky
-  // 1. Vragen array vullen met JOUW vragen en antwoorden (en plaatjes)
-  // 2. Zorgen dat als je op een antwoord klikt, dat hij dan door gaat naar de volgende vraag
-  // (oftewel, questionturn veranderen.) Maak je nog geen zorgen om dat het antwoord goed moet zijn.
   // 3. Daadwerkelijk checken of de gebruiker op het goede antwoord klikt!
   // 4. Score bijhouden van hoeveel vragen je goed hebt!
-if(nextquestion == 0){
-  nextquestion.hide()
-}
+
 
 }
 // de functie waar de vragen op te zien zijn
@@ -224,6 +163,62 @@ function preload() {
 
 }
 function nextquestionbutton() {
-  questionturn = questionturn+ 1;
+  questionturn = questionturn + 1;
   nextquestion.hide();
+}
+function buttonAnswer1Pressed() {
+
+  // Lees de huidige vraag (data object)
+  let huidigeVraag = vragen[questionturn];
+
+  // Als het goede antwoord 0 is, dan hoort dat bij deze knop, en wordt ie groen.
+  if (huidigeVraag.goedeAntwoord == 0) {
+    answer1Button.style("background-color", "green");
+    nextquestion.show();
+    nextquestion.position(500, 150);
+  }
+  else {
+    answer1Button.style("background-color", "red");
+  }
+
+}
+function buttonAnswer2Pressed() {
+
+  let huidigeVraag = vragen[questionturn];
+
+  if (huidigeVraag.goedeAntwoord == 1) {
+    answer2Button.style("background-color", "green");
+    nextquestion.show();
+    nextquestion.position(500, 150);
+  }
+  else {
+    answer2Button.style("background-color", "red");
+  }
+
+}
+function buttonAnswer3Pressed() {
+  let huidigeVraag = vragen[questionturn];
+
+  if (huidigeVraag.goedeAntwoord == 2) {
+    answer3Button.style("background-color", "green");
+    nextquestion.show();
+    nextquestion.position(500, 150);
+  }
+  else {
+    answer3Button.style("background-color", "red");
+  }
+
+}
+function buttonAnswer4Pressed() {
+  let huidigeVraag = vragen[questionturn];
+
+  if (huidigeVraag.goedeAntwoord == 3) {
+    answer4Button.style("background-color", "green");
+    nextquestion.show();
+    nextquestion.position(500, 150);
+  }
+  else {
+    answer4Button.style("background-color", "red");
+  }
+
 }
