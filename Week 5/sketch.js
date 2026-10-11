@@ -1,15 +1,13 @@
-let timer = 0
 
-let answerbutton1color = 'white'
-let answerbutton2color = 'white'
-let answerbutton3color = 'white'
-let answerbutton4color = 'white'
+
+
 let questionpanelcolor = 'white'
 
 let questionturn = 0
 
 let nextquestion;
 
+// de fotos
 let vraagtekenplaatje;
 let italiaansevlag;
 let sierreleonevlag;
@@ -31,28 +29,33 @@ function setup() {
   answer1Button.position(27, 437);
   answer1Button.size(600, 100,);
   answer1Button.mousePressed(buttonAnswer1Pressed);
+  answer1Button.style("background-color", "");
 
   answer2Button = createButton("Antwoord 2");
   answer2Button.position(27, 327);
   answer2Button.size(600, 100);
   answer2Button.mousePressed(buttonAnswer2Pressed);
+  answer2Button.style("background-color", "");
 
   answer3Button = createButton("Antwoord 3");
   answer3Button.position(645, 327)
   answer3Button.size(600, 100);
-  answer3Button.mousePressed(buttonAnswer3Pressed)
+  answer3Button.mousePressed(buttonAnswer3Pressed);
+  answer3Button.style("background-color", "");
 
   answer4Button = createButton("Antwoord 4");
   answer4Button.position(645, 437);
   answer4Button.size(600, 100);
   answer4Button.mousePressed(buttonAnswer4Pressed);
+  answer4Button.style("background-color", "");
 
+  // de volgende vraag knop
   nextquestion = createButton("volgende vraag")
   nextquestion.position(-500, -500);
   nextquestion.size(100, 50);
   nextquestion.mousePressed(nextquestionbutton);
 
-
+  // de vragen in een data object
   vragen = [
     {
       vraagTekst: "Hoeveel minuten zit er in een uur?",
@@ -103,7 +106,7 @@ function setup() {
       plaatje: vraagtekenplaatje
     },
     {
-      vraagTekst: "wie was de eerste leider van het romeinserijk?",
+      vraagTekst: "wie was de eerste leider van het romeinser rijk?",
       antwoorden: ["Napoleon", "Julius Caesar", "Octavius", "Didius"],
       goedeAntwoord: 2,
       plaatje: romeinserijk
@@ -115,8 +118,15 @@ function setup() {
       plaatje: code
 
     },
-  ]
+    // deze 'vraag' is er zodat de restart functie werkt
+    {
+      vraagTekst: "",
+      antwoorden: ["X", "X", "X", "Restart?"],
+      goedeAntwoord: 3,
 
+    },
+
+  ]
 }
 
 function draw() {
@@ -125,10 +135,10 @@ function draw() {
   //de plek waar de vragen te zien zijn
   fill(questionpanelcolor);
   questionpanel(20, 20);
-  // de timer die aangeeft hoeveel seconden je hebt per vraag
+  // kleur en hoe groot de tekst van de vragen zijn
   fill(0, 0, 0);
   textSize(40);
-  text(timer, 1100, 250);
+
 
   let huidigeVraag = vragen[questionturn];
   text(huidigeVraag.vraagTekst, 30, 100);
@@ -165,6 +175,16 @@ function preload() {
 function nextquestionbutton() {
   questionturn = questionturn + 1;
   nextquestion.hide();
+  if (questionturn == 9) {
+    nextquestion.html("restart?");
+  }
+  else {
+    nextquestion.html("volgende vraag")
+  }
+  if (questionturn == 10) {
+    questionturn = 0
+  }
+
 }
 function buttonAnswer1Pressed() {
 
