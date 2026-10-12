@@ -1,6 +1,4 @@
 
-
-
 let questionpanelcolor = 'white'
 
 let questionturn = 0
@@ -139,16 +137,18 @@ function draw() {
   fill(0, 0, 0);
   textSize(40);
 
-
+  // de huidige vraag is de vraag die nu in de draw wordt gezien
+  // en questionturn is de vraaag die nu aan de beurt is
   let huidigeVraag = vragen[questionturn];
   text(huidigeVraag.vraagTekst, 30, 100);
 
-
+  // de tekst die op de antwoorden knoppen te zien zijn
   answer1Button.html(huidigeVraag.antwoorden[0]);
   answer2Button.html(huidigeVraag.antwoorden[1]);
   answer3Button.html(huidigeVraag.antwoorden[2]);
   answer4Button.html(huidigeVraag.antwoorden[3]);
 
+  //geeft aan welke foto op de draw fuctie te zien is
   image(huidigeVraag.plaatje, 850, 50, 200, 200);
 
   // Stappenplan voor Ricky
@@ -163,6 +163,7 @@ function questionpanel(x, y) {
 }
 
 function preload() {
+  // zorgt dat de foto in de code staat
   vraagtekenplaatje = loadImage('vraagteken.png');
   italiaansevlag = loadImage('italy.png');
   sierreleonevlag = loadImage('siere leone.png');
@@ -172,9 +173,12 @@ function preload() {
   code = loadImage('coding.webp')
 
 }
+// nextquestionbutton functie zorgt ervoor dat als je op de knop klikt dat het
+//daadwerkelijk naar de volgende vraag gaat
 function nextquestionbutton() {
   questionturn = questionturn + 1;
   nextquestion.hide();
+  // zorgt ervoor dat de nextquestion knop veranderd in een start knop die weer naar vraag 1 gaat
   if (questionturn == 9) {
     nextquestion.html("restart?");
   }
@@ -192,6 +196,7 @@ function buttonAnswer1Pressed() {
   let huidigeVraag = vragen[questionturn];
 
   // Als het goede antwoord 0 is, dan hoort dat bij deze knop, en wordt ie groen.
+  // zo niet? is die rood
   if (huidigeVraag.goedeAntwoord == 0) {
     answer1Button.style("background-color", "green");
     nextquestion.show();
@@ -204,8 +209,11 @@ function buttonAnswer1Pressed() {
 }
 function buttonAnswer2Pressed() {
 
+// Lees de huidige vraag (data object)
   let huidigeVraag = vragen[questionturn];
 
+ // Als het goede antwoord 0 is, dan hoort dat bij deze knop, en wordt ie groen.
+  // zo niet? is die rood
   if (huidigeVraag.goedeAntwoord == 1) {
     answer2Button.style("background-color", "green");
     nextquestion.show();
@@ -217,8 +225,12 @@ function buttonAnswer2Pressed() {
 
 }
 function buttonAnswer3Pressed() {
+  // Lees de huidige vraag (data object)
+
   let huidigeVraag = vragen[questionturn];
 
+ // Als het goede antwoord 0 is, dan hoort dat bij deze knop, en wordt ie groen.
+  // zo niet? is die rood
   if (huidigeVraag.goedeAntwoord == 2) {
     answer3Button.style("background-color", "green");
     nextquestion.show();
@@ -230,8 +242,12 @@ function buttonAnswer3Pressed() {
 
 }
 function buttonAnswer4Pressed() {
+
+  // Lees de huidige vraag (data object)
   let huidigeVraag = vragen[questionturn];
 
+ // Als het goede antwoord 0 is, dan hoort dat bij deze knop, en wordt ie groen.
+  // zo niet? is die rood
   if (huidigeVraag.goedeAntwoord == 3) {
     answer4Button.style("background-color", "green");
     nextquestion.show();
