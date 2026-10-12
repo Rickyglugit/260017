@@ -1,4 +1,6 @@
 let textstats = ["gezondheid", "energie", "geluk", "honger"];
+let steakfoto;
+let sponsefoto;
 
 function setup() {
   createCanvas(1255, 550);
@@ -7,7 +9,7 @@ function setup() {
 
 function draw() {
   background(220);
-
+// de 4 for loops zijn de statistieken
   for (let i = 0; i < 4; i++) {
 
     fill(0, 255, 0);
@@ -24,6 +26,7 @@ function draw() {
       rect(1050 + 50 * i, 200, 50, 30);
     }
   }
+  // deze for loop is voor de teksen op de statistieken
   for (let i = 0; i < textstats.length; i++) {
     fill(255);
     textSize(20);
@@ -31,19 +34,25 @@ function draw() {
   }
   //het zwarte platform waar de knoppen in komen
   fill(0, 0, 0);
-  circle(600, 950, 1000);
+  circle(600, 920, 1000);
   fill(230, 230, 230);
-  circle(600, 950, 975);
+  circle(600, 920, 975);
 
-  icon(50,50,'green');
+  icon(0,0,'red');
+  icon(145,-25,'green');
+image(steakfoto,437,485,25,25);
+image(sponsefoto,583,465,25,25)
+}
+function icon(x, y, color) {
+  fill(247, 247, 247);
+  circle(450 + x,500 + y,70 );
+  fill(color);
+  circle(450 + x,500 + y,50);
+  fill(247,247,247);
+  circle(450 + x,500 + y,40);
 
 }
-function icon(x, y, fill) {
-  fill(255, 255, 255);
-  circle(x, y, 100);
-  fill( fill)
-  circle(x, y,80);
-  fill(255,255,255)
-  circle(x, y, 60);
-
+function preload(){
+steakfoto = loadImage('steak.png');
+sponsefoto = loadImage('spons.png');
 }
