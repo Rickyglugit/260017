@@ -1,6 +1,8 @@
 let textstats = ["gezondheid", "energie", "geluk", "honger"];
 let steakfoto;
 let sponsefoto;
+let maanfoto;
+let placeholderbackground
 
 function setup() {
   createCanvas(1255, 550);
@@ -9,6 +11,8 @@ function setup() {
 
 function draw() {
   background(220);
+  image(placeholderbackground,0,0,1255,550);
+
 // de 4 for loops zijn de statistieken
   for (let i = 0; i < 4; i++) {
 
@@ -40,8 +44,12 @@ function draw() {
 
   icon(0,0,'red');
   icon(145,-25,'green');
+  icon(290,0,'yellow');
+
 image(steakfoto,437,485,25,25);
-image(sponsefoto,583,465,25,25)
+image(sponsefoto,583,465,25,25);
+image(maanfoto,725,485,30,30);
+
 }
 function icon(x, y, color) {
   fill(247, 247, 247);
@@ -55,4 +63,6 @@ function icon(x, y, color) {
 function preload(){
 steakfoto = loadImage('steak.png');
 sponsefoto = loadImage('spons.png');
+maanfoto = loadImage('maan.png');
+placeholderbackground = loadImage('placeholder.webp')
 }
