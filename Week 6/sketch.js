@@ -51,7 +51,7 @@ function draw() {
 
   strokeWeight(2)
   balloonpet(100,-125,205, 239, 250);
-  
+  balloonmouth()
 
 }
 function icon(x, y, color) {
@@ -83,7 +83,7 @@ function balloonpet(x, y, v1 , v2 , v3) {
   rectMode(CENTER)
   fill('black');
   //rect(500,200,40,10,50);
-  rect(0, 0,40,10,50);
+  rect(0, 0,35,5,50);
   pop();
 
   push();
@@ -92,8 +92,10 @@ function balloonpet(x, y, v1 , v2 , v3) {
   rectMode(CENTER)
   fill('black');
   //rect(500,200,40,10,50);
-  rect(0, 0,40,10,50);
-
-
+  rect(0, 0,35,5,50);
   pop();
+}
+function balloonmouth(){
+  
+
 }
