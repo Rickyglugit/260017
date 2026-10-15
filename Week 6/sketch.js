@@ -5,6 +5,7 @@ let sponsefoto;
 let maanfoto;
 let roombackground
 
+
 function setup() {
   createCanvas(1255, 550);
 
@@ -47,8 +48,10 @@ function draw() {
   image(sponsefoto, 583, 465, 25, 25);
   image(maanfoto, 725, 485, 30, 30);
 
+
   strokeWeight(2)
   balloonpet(100,-125,205, 239, 250);
+  
 
 }
 function icon(x, y, color) {
@@ -65,6 +68,7 @@ function preload() {
   sponsefoto = loadImage('spons.png');
   maanfoto = loadImage('maan.png');
   roombackground = loadImage('room.png');
+  
 }
 function balloonpet(x, y, v1 , v2 , v3) {
   fill(v1, v2, v3)
@@ -72,5 +76,24 @@ function balloonpet(x, y, v1 , v2 , v3) {
   rect(490 + x, 370 + y, 20, 10);
   fill(175, 133, 0);
   rect(495 + x, 380 + y,10,70);
+  
+  push();
+  translate(570,150);
+  rotate((PI / 6));
+  rectMode(CENTER)
+  fill('black');
+  //rect(500,200,40,10,50);
+  rect(0, 0,40,10,50);
+  pop();
 
+  push();
+  translate(630,150);
+  rotate(-(PI / 6));
+  rectMode(CENTER)
+  fill('black');
+  //rect(500,200,40,10,50);
+  rect(0, 0,40,10,50);
+
+
+  pop();
 }
