@@ -45,8 +45,8 @@ function draw() {
       else {
         fill('black');
       }
-      if(statsWaardes[3] > 0){
-        
+      if(statWaarde[3] > 0){
+        statWaarde[0] > 25 * blokIndex
       }
 
       rect(1050 + 50 * blokIndex, 50 + 50 * statIndex, 50, 30);
