@@ -24,19 +24,19 @@ function draw() {
   background(220);
   image(roombackground, 0, 0, 1255, 550);
 
-   statsWaardes[3] = statsWaardes[3] - hongerPerSeconde * deltaTime * 0.001;
-   statsWaardes[2] = statsWaardes[2] - gelukPerseconde * deltaTime * 0.001;
-   statsWaardes[1] = statsWaardes[1] - energiePerseconden * deltaTime * 0.001;
+  statsWaardes[3] = statsWaardes[3] - hongerPerSeconde * deltaTime * 0.001;
+  statsWaardes[2] = statsWaardes[2] - gelukPerseconde * deltaTime * 0.001;
+  statsWaardes[1] = statsWaardes[1] - energiePerseconden * deltaTime * 0.001;
 
-  if (statsWaardes[3] <= 0){
+  if (statsWaardes[3] <= 0) {
     statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
   }
-   if (statsWaardes[2] <= 0){
+  if (statsWaardes[2] <= 0) {
     statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
-  } 
-if (statsWaardes[1] <= 0){
+  }
+  if (statsWaardes[1] <= 0) {
     statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
-  } 
+  }
   // Als honger onder de 0 komt, zet terug naar 0. Dus honger wordt nooit lager dan 0.
   if (statsWaardes[3] < 0) {
     statsWaardes[3] = 0;
@@ -61,7 +61,7 @@ if (statsWaardes[1] <= 0){
       else {
         fill('black');
       }
-      
+
 
       rect(1050 + 50 * blokIndex, 50 + 50 * statIndex, 50, 30);
     }
@@ -82,12 +82,12 @@ if (statsWaardes[1] <= 0){
   icon(0, 10, 'red');
   icon(115, -25, 'green');
   icon(215, -25, 'yellow');
-  icon(330,10,'magenta');
+  icon(330, 10, 'magenta');
 
   image(steakfoto, 437, 495, 25, 25);
   image(sponsefoto, 553, 465, 25, 25);
   image(maanfoto, 650, 460, 30, 30);
-  image(ballgame,760,490,40,40);
+  image(ballgame, 760, 490, 40, 40);
 
 
   strokeWeight(2)
@@ -109,7 +109,7 @@ function preload() {
   sponsefoto = loadImage('spons.png');
   maanfoto = loadImage('maan.png');
   roombackground = loadImage('room.png');
-  ballgame =loadImage('ball.png')
+  ballgame = loadImage('ball.png')
 }
 function balloonpet(x, y, v1, v2, v3) {
   fill(v1, v2, v3)
@@ -138,8 +138,8 @@ function balloonpet(x, y, v1, v2, v3) {
 }
 function balloonmouth() {
 }
-function keyPressed(){
-  if(mouseX > 450 && mouseX < 450 + 70 && mouseY >500 &&  mouseY < 500+70){
+function keyPressed() {
+  if (mouseX > 450 && mouseX < 450 + 70 && mouseY > 500 && mouseY < 500 + 70) {
 
   }
 
