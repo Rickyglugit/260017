@@ -6,7 +6,12 @@ let steakfoto;
 let sponsefoto;
 let maanfoto;
 let roombackground;
+let ballgame;
+
 let hongerPerSeconde = 10;
+let gezondheidPerseconde = 5;
+let gelukPerseconde = 7;
+let energiePerseconden = 12;
 
 
 function setup() {
@@ -19,13 +24,19 @@ function draw() {
   background(220);
   image(roombackground, 0, 0, 1255, 550);
 
-  statsWaardes[3] = statsWaardes[3] - hongerPerSeconde * deltaTime * 0.001;
+   statsWaardes[3] = statsWaardes[3] - hongerPerSeconde * deltaTime * 0.001;
+   statsWaardes[2] = statsWaardes[2] - gelukPerseconde * deltaTime * 0.001;
+   statsWaardes[1] = statsWaardes[1] - energiePerseconden * deltaTime * 0.001;
 
   if (statsWaardes[3] <= 0){
-    statsWaardes[0] = statsWaardes[0] - hongerPerSeconde * deltaTime * 0.001;
+    statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
   }
-    
-
+   if (statsWaardes[2] <= 0){
+    statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
+  } 
+if (statsWaardes[1] <= 0){
+    statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
+  } 
   // Als honger onder de 0 komt, zet terug naar 0. Dus honger wordt nooit lager dan 0.
   if (statsWaardes[3] < 0) {
     statsWaardes[3] = 0;
@@ -68,13 +79,15 @@ function draw() {
   fill(230, 230, 230);
   circle(600, 920, 975);
 
-  icon(0, 0, 'red');
-  icon(145, -25, 'green');
-  icon(290, 0, 'yellow');
+  icon(0, 10, 'red');
+  icon(115, -25, 'green');
+  icon(215, -25, 'yellow');
+  icon(330,10,'magenta');
 
-  image(steakfoto, 437, 485, 25, 25);
-  image(sponsefoto, 583, 465, 25, 25);
-  image(maanfoto, 725, 485, 30, 30);
+  image(steakfoto, 437, 495, 25, 25);
+  image(sponsefoto, 553, 465, 25, 25);
+  image(maanfoto, 650, 460, 30, 30);
+  image(ballgame,760,490,40,40);
 
 
   strokeWeight(2)
@@ -96,7 +109,7 @@ function preload() {
   sponsefoto = loadImage('spons.png');
   maanfoto = loadImage('maan.png');
   roombackground = loadImage('room.png');
-
+  ballgame =loadImage('ball.png')
 }
 function balloonpet(x, y, v1, v2, v3) {
   fill(v1, v2, v3)
