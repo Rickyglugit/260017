@@ -21,6 +21,11 @@ function draw() {
 
   statsWaardes[3] = statsWaardes[3] - hongerPerSeconde * deltaTime * 0.001;
 
+  if (statsWaardes[3] <= 0){
+    statsWaardes[0] = statsWaardes[0] - hongerPerSeconde * deltaTime * 0.001;
+  }
+    
+
   // Als honger onder de 0 komt, zet terug naar 0. Dus honger wordt nooit lager dan 0.
   if (statsWaardes[3] < 0) {
     statsWaardes[3] = 0;
@@ -45,9 +50,7 @@ function draw() {
       else {
         fill('black');
       }
-      if(statWaarde[3] > 0){
-        statWaarde[0] > 25 * blokIndex
-      }
+      
 
       rect(1050 + 50 * blokIndex, 50 + 50 * statIndex, 50, 30);
     }
