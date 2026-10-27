@@ -1,4 +1,4 @@
-let textstats = ["gezondheid", "energie", "geluk", "honger"];
+let textstats = ["gezondheid", "energie", "vrolijkheid", "honger"];
 let colorstats = ["#3cff00", "#f6ff00", "#fe0dea", "#ee1313"];
 let statsWaardes = [100, 100, 100, 100];
 
@@ -8,15 +8,19 @@ let maanfoto;
 let roombackground;
 let ballgame;
 let aardbeifoto;
+let spongebobfoto
 
 let hongerPerSeconde = 10;
 let gezondheidPerseconde = 5;
-let gelukPerseconde = 7;
+let vrolijkheidPerseconde = 7;
 let energiePerseconden = 12;
 
 let showFoodImage = false;
 let foodImageX = 0;
 let foodImageY = 0;
+let foodFollowMouse = false;
+
+let showSpongeImage = false
 
 
 function setup() {
@@ -28,11 +32,11 @@ function setup() {
 function draw() {
   background(220);
   image(roombackground, 0, 0, 1255, 550);
-
+  // zorgt dat alle statwaardes naar beneden gaan
   statsWaardes[3] = statsWaardes[3] - hongerPerSeconde * deltaTime * 0.001;
-  statsWaardes[2] = statsWaardes[2] - gelukPerseconde * deltaTime * 0.001;
+  statsWaardes[2] = statsWaardes[2] - vrolijkheidPerseconde * deltaTime * 0.001;
   statsWaardes[1] = statsWaardes[1] - energiePerseconden * deltaTime * 0.001;
-
+  // zorgt dat als de 3 statwaardes energie, honger en  geluk op 0 staan gaat gezondheid ook om laag
   if (statsWaardes[3] <= 0) {
     statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
   }
@@ -82,30 +86,53 @@ function draw() {
   circle(600, 920, 1000);
   fill(230, 230, 230);
   circle(600, 920, 975);
-
+  // zijn de icoons in het menu voor tamagotchi
   icon(0, 10, 'red');
-  icon(115, -25, 'green');
+  icon(115, -25, 'lime');
   icon(215, -25, 'yellow');
   icon(330, 10, 'magenta');
-
+  // fotos op de icoons
   image(steakfoto, 437, 495, 25, 25);
   image(sponsefoto, 553, 465, 25, 25);
   image(maanfoto, 650, 460, 30, 30);
   image(ballgame, 760, 490, 40, 40);
 
-
+  // tamagotchi zelf
   strokeWeight(2)
   balloonpet(100, -125, 205, 239, 250);
   balloonmouth()
 
   if (showFoodImage) {
+    //als je op het voedsel klikt kun je het slepen
+    if (foodFollowMouse) {
+      foodImageX = mouseX - 25;
+      foodImageY = mouseY - 25;
+    }
+    // zorgt ervoor dat zodra het voedsel in aanraking komt met de tamagotchi dat het voedsel verdwijnt
+    let distanceToPet = dist(600, 175, mouseX, mouseY);
+    if (distanceToPet < 40) {
+      showFoodImage = false;
+      // de honger bar gaat weer om hoog als het voedsel verdwijnt
+      statsWaardes[3] = statsWaardes[3] + 25
+    }
+    // foto van voedsel 
     image(aardbeifoto, foodImageX, foodImageY, 50, 50);
   }
-
+  if (showSpongeImage) {
+    image(spongebobfoto, mouseX - 35, mouseY - 55, 75, 125);
+    let distanceToPet = dist(600, 175, mouseX, mouseY);
+    if (distanceToPet < 40) {
+      statsWaardes[0] = statsWaardes[0] + 1
+    }
+    if (statsWaardes[0] > 100) 
+      showSpongeImage = false
+    
+  }
 
 
 }
 function icon(x, y, color) {
+  // layout van de knopjes
   fill(247, 247, 247);
   circle(450 + x, 500 + y, 70);
   fill(color);
@@ -121,6 +148,8 @@ function preload() {
   roombackground = loadImage('room.png');
   ballgame = loadImage('ball.png');
   aardbeifoto = loadImage('strawberry.png');
+  spongebobfoto = loadImage('spongebob.png');
+
 }
 function balloonpet(x, y, v1, v2, v3) {
   fill(v1, v2, v3)
@@ -128,7 +157,7 @@ function balloonpet(x, y, v1, v2, v3) {
   rect(490 + x, 370 + y, 20, 10);
   fill(175, 133, 0);
   rect(495 + x, 380 + y, 10, 70);
-
+  // roteert de ogen
   push();
   translate(570, 150);
   rotate((PI / 6));
@@ -151,13 +180,29 @@ function balloonmouth() {
 }
 function mousePressed() {
   if (mouseButton == LEFT) {
+    // dat zorgt ervoor dat je op het honger icoon knop kan klikken
     let distanceToMouse = dist(450, 510, mouseX, mouseY);
     if (distanceToMouse < 70) {
-      console.log("Geklikt!");
+      // laat ook het voedsel zijn
       showFoodImage = true;
-      
-      foodImageX = random(0,500);
-      foodImageY = random(0,500);
+      // zorgt evoor dat  het voedsel een willekeurige positie heeft 
+      foodImageX = random(0, 500);
+      foodImageY = random(0, 500);
+    }
+
+    // zorgt ervoor dat het voedsel geslepen kan worden
+    let distanceTofood = dist(foodImageX + 25, foodImageY + 25, mouseX, mouseY);
+    if (distanceTofood < 40) {
+      foodFollowMouse = true;
+    }
+    let distanceToMouse2 = dist(565, 475, mouseX, mouseY);
+    if (distanceToMouse2 < 70) {
+      showSpongeImage = true
     }
   }
+}
+
+function mouseReleased() {
+  // volgt de muis niet meer
+  foodFollowMouse = false;
 }
