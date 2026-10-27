@@ -7,11 +7,16 @@ let sponsefoto;
 let maanfoto;
 let roombackground;
 let ballgame;
+let aardbeifoto;
 
 let hongerPerSeconde = 10;
 let gezondheidPerseconde = 5;
 let gelukPerseconde = 7;
 let energiePerseconden = 12;
+
+let showFoodImage = false;
+let foodImageX = 0;
+let foodImageY = 0;
 
 
 function setup() {
@@ -41,7 +46,6 @@ function draw() {
   if (statsWaardes[3] < 0) {
     statsWaardes[3] = 0;
   }
-  console.log(statsWaardes[3]);
 
 
   // de 4 for loops zijn de statistieken
@@ -94,6 +98,12 @@ function draw() {
   balloonpet(100, -125, 205, 239, 250);
   balloonmouth()
 
+  if (showFoodImage) {
+    image(aardbeifoto, foodImageX, foodImageY, 50, 50);
+  }
+
+
+
 }
 function icon(x, y, color) {
   fill(247, 247, 247);
@@ -109,7 +119,8 @@ function preload() {
   sponsefoto = loadImage('spons.png');
   maanfoto = loadImage('maan.png');
   roombackground = loadImage('room.png');
-  ballgame = loadImage('ball.png')
+  ballgame = loadImage('ball.png');
+  aardbeifoto = loadImage('strawberry.png');
 }
 function balloonpet(x, y, v1, v2, v3) {
   fill(v1, v2, v3)
@@ -138,9 +149,15 @@ function balloonpet(x, y, v1, v2, v3) {
 }
 function balloonmouth() {
 }
-function keyPressed() {
-  if (mouseX > 450 && mouseX < 450 + 70 && mouseY > 500 && mouseY < 500 + 70) {
-
+function mousePressed() {
+  if (mouseButton == LEFT) {
+    let distanceToMouse = dist(450, 510, mouseX, mouseY);
+    if (distanceToMouse < 70) {
+      console.log("Geklikt!");
+      showFoodImage = true;
+      
+      foodImageX = random(0,500);
+      foodImageY = random(0,500);
+    }
   }
-
 }
