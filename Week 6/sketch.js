@@ -8,7 +8,9 @@ let maanfoto;
 let roombackground;
 let ballgame;
 let aardbeifoto;
-let spongebobfoto
+let spongebobfoto;
+let sleepspeechbubblefoto;
+let tennisballfoto;
 
 let hongerPerSeconde = 10;
 let gezondheidPerseconde = 5;
@@ -21,6 +23,7 @@ let foodImageY = 0;
 let foodFollowMouse = false;
 
 let showSpongeImage = false
+let showSleepSpeechBubbleImage = false
 
 
 function setup() {
@@ -49,6 +52,15 @@ function draw() {
   // Als honger onder de 0 komt, zet terug naar 0. Dus honger wordt nooit lager dan 0.
   if (statsWaardes[3] < 0) {
     statsWaardes[3] = 0;
+  }
+  if (statsWaardes[2] < 0) {
+    statsWaardes[2] = 0;
+  }
+  if (statsWaardes[1] < 0) {
+    statsWaardes[1] = 0;
+  }
+  if (statsWaardes[0] < 0) {
+    statsWaardes[0] = 0;
   }
 
 
@@ -118,6 +130,7 @@ function draw() {
     // foto van voedsel 
     image(aardbeifoto, foodImageX, foodImageY, 50, 50);
   }
+
   if (showSpongeImage) {
     image(spongebobfoto, mouseX - 35, mouseY - 55, 75, 125);
     let distanceToPet = dist(600, 175, mouseX, mouseY);
@@ -126,7 +139,13 @@ function draw() {
     }
     if (statsWaardes[0] > 100) 
       showSpongeImage = false
-    
+  }
+  if (showSleepSpeechBubbleImage){
+    image(sleepspeechbubblefoto,200,-50,550,400);
+    statsWaardes[1] = statsWaardes[1]+1
+    if(statsWaardes[1] >100){
+      showSleepSpeechBubbleImage = false
+    }
   }
 
 
@@ -149,6 +168,8 @@ function preload() {
   ballgame = loadImage('ball.png');
   aardbeifoto = loadImage('strawberry.png');
   spongebobfoto = loadImage('spongebob.png');
+  sleepspeechbubblefoto = loadImage('sleepspeechbubble.png');
+  
 
 }
 function balloonpet(x, y, v1, v2, v3) {
@@ -195,9 +216,14 @@ function mousePressed() {
     if (distanceTofood < 40) {
       foodFollowMouse = true;
     }
+
     let distanceToMouse2 = dist(565, 475, mouseX, mouseY);
     if (distanceToMouse2 < 70) {
       showSpongeImage = true
+    }
+    let distanceToMouse3 = dist(665, 475,mouseX,mouseY);
+    if (distanceToMouse3 < 70) {
+      showSleepSpeechBubbleImage = true
     }
   }
 }
