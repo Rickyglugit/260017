@@ -22,9 +22,12 @@ let foodImageX = 0;
 let foodImageY = 0;
 let foodFollowMouse = false;
 
-let showSpongeImage = false
-let showSleepSpeechBubbleImage = false
+let showSpongeImage = false;
+let showSleepSpeechBubbleImage = false;
 
+let showTennisBallImage = false;
+let tennisImageX = [];
+let tennisImageY = [];
 
 function setup() {
   createCanvas(1255, 550);
@@ -49,7 +52,7 @@ function draw() {
   if (statsWaardes[1] <= 0) {
     statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
   }
-  // Als honger onder de 0 komt, zet terug naar 0. Dus honger wordt nooit lager dan 0.
+  // Als statwaardes onder de 0 komt, zet terug naar 0. Dus honger wordt nooit lager dan 0.
   if (statsWaardes[3] < 0) {
     statsWaardes[3] = 0;
   }
@@ -147,6 +150,12 @@ function draw() {
       showSleepSpeechBubbleImage = false
     }
   }
+  if (showTennisBallImage){
+    for (let index = 0; index < tennisImageX.length; index++) {
+      image(tennisballfoto, tennisImageX[index], tennisImageY[index],100,100);
+    }
+    
+  }
 
 
 }
@@ -169,6 +178,7 @@ function preload() {
   aardbeifoto = loadImage('strawberry.png');
   spongebobfoto = loadImage('spongebob.png');
   sleepspeechbubblefoto = loadImage('sleepspeechbubble.png');
+  tennisballfoto = loadImage('tennisball.png');
   
 
 }
@@ -224,6 +234,13 @@ function mousePressed() {
     let distanceToMouse3 = dist(665, 475,mouseX,mouseY);
     if (distanceToMouse3 < 70) {
       showSleepSpeechBubbleImage = true
+    }
+    //!!!!!!!!!
+    let distanceToMouse4 = dist(780, 510,mouseX,mouseY);
+    if (distanceToMouse4 < 70) {
+      showTennisBallImage= true
+      tennisImageX.push(random(0,500));
+      tennisImageY.push(random(0,500));
     }
   }
 }
