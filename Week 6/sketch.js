@@ -29,6 +29,9 @@ let showTennisBallImage = false;
 let tennisImageX = [];
 let tennisImageY = [];
 
+let balloonPetX = 600;
+let balloonPetY = 150;
+
 function setup() {
   createCanvas(1255, 550);
 
@@ -114,7 +117,7 @@ function draw() {
 
   // tamagotchi zelf
   strokeWeight(2)
-  balloonpet(100, -125, 205, 239, 250);
+  balloonpet(balloonPetX, balloonPetY, 205, 239, 250);
   balloonmouth()
 
   if (showFoodImage) {
@@ -124,11 +127,12 @@ function draw() {
       foodImageY = mouseY - 25;
     }
     // zorgt ervoor dat zodra het voedsel in aanraking komt met de tamagotchi dat het voedsel verdwijnt
-    let distanceToPet = dist(600, 175, mouseX, mouseY);
+    let distanceToPet = dist(balloonPetX, balloonPetY, mouseX, mouseY);
     if (distanceToPet < 40) {
       showFoodImage = false;
       // de honger bar gaat weer om hoog als het voedsel verdwijnt
       statsWaardes[3] = statsWaardes[3] + 25
+      statsWaardes[1] = statsWaardes[1] + 50
     }
     // foto van voedsel 
     image(aardbeifoto, foodImageX, foodImageY, 50, 50);
@@ -136,27 +140,47 @@ function draw() {
 
   if (showSpongeImage) {
     image(spongebobfoto, mouseX - 35, mouseY - 55, 75, 125);
-    let distanceToPet = dist(600, 175, mouseX, mouseY);
+    let distanceToPet = dist(balloonPetX, balloonPetY, mouseX, mouseY);
     if (distanceToPet < 40) {
       statsWaardes[0] = statsWaardes[0] + 1
     }
-    if (statsWaardes[0] > 100) 
+    if (statsWaardes[0] > 100)
       showSpongeImage = false
   }
-  if (showSleepSpeechBubbleImage){
-    image(sleepspeechbubblefoto,200,-50,550,400);
-    statsWaardes[1] = statsWaardes[1]+1
-    if(statsWaardes[1] >100){
+  if (showSleepSpeechBubbleImage) {
+    image(sleepspeechbubblefoto, balloonPetX - 400, balloonPetY - 250, 550, 400);
+    statsWaardes[1] = statsWaardes[1] + 1
+    if (statsWaardes[1] > 100) {
       showSleepSpeechBubbleImage = false
     }
   }
-  if (showTennisBallImage){
+  if (showTennisBallImage) {
     for (let index = 0; index < tennisImageX.length; index++) {
-      image(tennisballfoto, tennisImageX[index], tennisImageY[index],100,100);
+      image(tennisballfoto, tennisImageX[index], tennisImageY[index], 100, 100);
     }
-    
   }
 
+
+if (tennisImageX.length > 0) {
+  let targetX = tennisImageX[0]; // het x coordinaat van de eerste tennisbal
+  let targetY = tennisImageY[0]; // het y coordinaat van de eerste tennisbal
+  let richtingX = targetX - balloonPetX;
+  let richtingY = targetY - balloonPetY;
+
+  balloonPetX = balloonPetX + richtingX * 0.01;
+  balloonPetY = balloonPetY + richtingY * 0.01;
+
+  // Als de balloonpet de bal aanraakt (oftewel, dichtbij de targetX en targetY komt), verwijder dan de
+  // eerste tennisbal uit de array
+  // en doe de happiness omhoog
+  let distanceToPet = dist(balloonPetX, balloonPetY, targetX, targetY);
+  if (distanceToPet < 50) {
+    statsWaardes[2] = statsWaardes[2] + 25;
+    tennisImageX.shift();
+    tennisImageY.shift();
+    statsWaardes[1] = statsWaardes[1] -25
+  }
+}
 
 }
 function icon(x, y, color) {
@@ -179,33 +203,21 @@ function preload() {
   spongebobfoto = loadImage('spongebob.png');
   sleepspeechbubblefoto = loadImage('sleepspeechbubble.png');
   tennisballfoto = loadImage('tennisball.png');
-  
+
 
 }
 function balloonpet(x, y, v1, v2, v3) {
   fill(v1, v2, v3)
-  circle(500 + x, 300 + y, 150, 150);
-  rect(490 + x, 370 + y, 20, 10);
+  // x 500, y = 300
+  circle(x, y, 150, 150);
+  rect(x - 10, 70 + y, 20, 10);
   fill(175, 133, 0);
-  rect(495 + x, 380 + y, 10, 70);
-  // roteert de ogen
-  push();
-  translate(570, 150);
-  rotate((PI / 6));
-  rectMode(CENTER)
-  fill('black');
-  //rect(500,200,40,10,50);
-  rect(0, 0, 35, 5, 50);
-  pop();
+  rect(x - 5, 80 + y, 10, 70);
 
-  push();
-  translate(630, 150);
-  rotate(-(PI / 6));
-  rectMode(CENTER)
-  fill('black');
-  //rect(500,200,40,10,50);
-  rect(0, 0, 35, 5, 50);
-  pop();
+  strokeWeight(5);
+  line(x - 50, y, x - 10, y + 20);
+  line(x + 50, y, x + 10, y + 20);
+
 }
 function balloonmouth() {
 }
@@ -231,16 +243,16 @@ function mousePressed() {
     if (distanceToMouse2 < 70) {
       showSpongeImage = true
     }
-    let distanceToMouse3 = dist(665, 475,mouseX,mouseY);
+    let distanceToMouse3 = dist(665, 475, mouseX, mouseY);
     if (distanceToMouse3 < 70) {
       showSleepSpeechBubbleImage = true
     }
-    //!!!!!!!!!
-    let distanceToMouse4 = dist(780, 510,mouseX,mouseY);
+
+    let distanceToMouse4 = dist(780, 510, mouseX, mouseY);
     if (distanceToMouse4 < 70) {
-      showTennisBallImage= true
-      tennisImageX.push(random(0,500));
-      tennisImageY.push(random(0,500));
+      showTennisBallImage = true
+      tennisImageX.push(random(0, 500));
+      tennisImageY.push(random(0, 500));
     }
   }
 }
