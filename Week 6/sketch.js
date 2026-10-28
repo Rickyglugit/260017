@@ -12,15 +12,16 @@ let spongebobfoto;
 let sleepspeechbubblefoto;
 let tennisballfoto;
 
-let hongerPerSeconde = 10;
-let gezondheidPerseconde = 5;
-let vrolijkheidPerseconde = 7;
-let energiePerseconden = 12;
+let hongerPerSeconde = 0.6;
+let gezondheidPerseconde = 0.8;
+let vrolijkheidPerseconde = 1;
+let energiePerseconden = 0.7;
 
 let showFoodImage = false;
 let foodImageX = 0;
 let foodImageY = 0;
 let foodFollowMouse = false;
+let foodcounter = 0
 
 let showSpongeImage = false;
 let showSleepSpeechBubbleImage = false;
@@ -161,26 +162,26 @@ function draw() {
   }
 
 
-if (tennisImageX.length > 0) {
-  let targetX = tennisImageX[0]; // het x coordinaat van de eerste tennisbal
-  let targetY = tennisImageY[0]; // het y coordinaat van de eerste tennisbal
-  let richtingX = targetX - balloonPetX;
-  let richtingY = targetY - balloonPetY;
+  if (tennisImageX.length > 0) {
+    let targetX = tennisImageX[0]; // het x coordinaat van de eerste tennisbal
+    let targetY = tennisImageY[0]; // het y coordinaat van de eerste tennisbal
+    let richtingX = targetX - balloonPetX;
+    let richtingY = targetY - balloonPetY;
 
-  balloonPetX = balloonPetX + richtingX * 0.01;
-  balloonPetY = balloonPetY + richtingY * 0.01;
+    balloonPetX = balloonPetX + richtingX * 0.01;
+    balloonPetY = balloonPetY + richtingY * 0.01;
 
-  // Als de balloonpet de bal aanraakt (oftewel, dichtbij de targetX en targetY komt), verwijder dan de
-  // eerste tennisbal uit de array
-  // en doe de happiness omhoog
-  let distanceToPet = dist(balloonPetX, balloonPetY, targetX, targetY);
-  if (distanceToPet < 50) {
-    statsWaardes[2] = statsWaardes[2] + 25;
-    tennisImageX.shift();
-    tennisImageY.shift();
-    statsWaardes[1] = statsWaardes[1] -25
+    // Als de balloonpet de bal aanraakt (oftewel, dichtbij de targetX en targetY komt), verwijder dan de
+    // eerste tennisbal uit de array
+    // en doe de happiness omhoog
+    let distanceToPet = dist(balloonPetX, balloonPetY, targetX, targetY);
+    if (distanceToPet < 50) {
+      statsWaardes[2] = statsWaardes[2] + 25;
+      tennisImageX.shift();
+      tennisImageY.shift();
+      statsWaardes[1] = statsWaardes[1] - 25
+    }
   }
-}
 
 }
 function icon(x, y, color) {
