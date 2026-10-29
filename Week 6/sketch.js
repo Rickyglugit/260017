@@ -11,6 +11,15 @@ let aardbeifoto;
 let spongebobfoto;
 let sleepspeechbubblefoto;
 let tennisballfoto;
+let slaapmaskerfoto;
+
+let balloonmouthfoto;
+let neutralmouthfoto;
+let sadmouthfoto;
+let stenchfoto
+let fly1foto
+let fly2foto
+let mudfoto
 
 let hongerPerSeconde = 0.6;
 let gezondheidPerseconde = 0.8;
@@ -22,9 +31,11 @@ let foodImageX = 0;
 let foodImageY = 0;
 let foodFollowMouse = false;
 let foodcounter = 0
+let askfoodfoto;
 
 let showSpongeImage = false;
 let showSleepSpeechBubbleImage = false;
+let asksleepfoto;
 
 let showTennisBallImage = false;
 let tennisImageX = [];
@@ -44,8 +55,8 @@ function setup() {
 
     let loadedstats = JSON.parse(loadedstatsJSON);
 
-  // dit zorgt ervoor dat als de loadedstats.statwaardes niet gelijk staan aan 0  
-  // datde statwaardes gelijk zijn aan de loadedstats.statWaardes
+    // dit zorgt ervoor dat als de loadedstats.statwaardes niet gelijk staan aan 0  
+    // datde statwaardes gelijk zijn aan de loadedstats.statWaardes
     if (loadedstats.statsWaardes != null) {
       statsWaardes = loadedstats.statsWaardes;
     }
@@ -61,6 +72,7 @@ function draw() {
   statsWaardes[3] = statsWaardes[3] - hongerPerSeconde * deltaTime * 0.001;
   statsWaardes[2] = statsWaardes[2] - vrolijkheidPerseconde * deltaTime * 0.001;
   statsWaardes[1] = statsWaardes[1] - energiePerseconden * deltaTime * 0.001;
+
   // zorgt dat als de 3 statwaardes energie, honger en  geluk op 0 staan gaat gezondheid ook om laag
   if (statsWaardes[3] <= 0) {
     statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
@@ -71,7 +83,8 @@ function draw() {
   if (statsWaardes[1] <= 0) {
     statsWaardes[0] = statsWaardes[0] - gezondheidPerseconde * deltaTime * 0.001;
   }
-  // Als statwaardes onder de 0 komt, zet terug naar 0. Dus honger wordt nooit lager dan 0.
+
+  // Als statwaardes onder de 0 komt, zet terug naar 0. Dus statwaardes wordt nooit lager dan 0.
   if (statsWaardes[3] < 0) {
     statsWaardes[3] = 0;
   }
@@ -83,6 +96,20 @@ function draw() {
   }
   if (statsWaardes[0] < 0) {
     statsWaardes[0] = 0;
+  }
+  // Als statwaardes boven  de 100 komt, zet terug naar 100. Dus statwaardes wordt nooit hoger dan 100.
+
+  if (statsWaardes[3] > 100) {
+    statsWaardes[3] = 100;
+  }
+  if (statsWaardes[2] > 100) {
+    statsWaardes[2] = 100;
+  }
+  if (statsWaardes[1] > 100) {
+    statsWaardes[1] = 100;
+  }
+  if (statsWaardes[0] > 100) {
+    statsWaardes[0] = 100;
   }
 
 
@@ -134,7 +161,6 @@ function draw() {
   // tamagotchi zelf
   strokeWeight(2)
   balloonpet(balloonPetX, balloonPetY, 205, 239, 250);
-  balloonmouth()
 
   if (showFoodImage) {
     //als je op het voedsel klikt kun je het slepen
@@ -149,8 +175,9 @@ function draw() {
       // de honger bar gaat weer om hoog als het voedsel verdwijnt
       statsWaardes[3] = statsWaardes[3] + 25
       statsWaardes[1] = statsWaardes[1] + 50
+      // dit zorgt ervoor dat als je teveel eet dat je gezondheid achteruit gaat
       foodcounter = foodcounter + 1
-      if(foodcounter == 5){
+      if (foodcounter == 5) {
         foodcounter = 0
         statsWaardes[0] = statsWaardes[0] - 25
       }
@@ -170,6 +197,7 @@ function draw() {
   }
   if (showSleepSpeechBubbleImage) {
     image(sleepspeechbubblefoto, balloonPetX - 400, balloonPetY - 250, 550, 400);
+    image(slaapmaskerfoto, balloonPetX - 85, balloonPetY - 50, 175, 125);
     statsWaardes[1] = statsWaardes[1] + 1
     if (statsWaardes[1] > 100) {
       showSleepSpeechBubbleImage = false
@@ -209,6 +237,35 @@ function draw() {
   stats.statsWaardes = statsWaardes;
   // JSON stringify veranderd mijn data object in een string dat wordt opgeslagen in local storage
   storeItem("stats", JSON.stringify(stats));
+// dit verranderd de mond van de balloon gebaseerd op de statistieken
+if(statsWaardes[2] >50){
+  image(balloonmouthfoto,balloonPetX - 125,balloonPetY - 65,200,350);
+}
+else if(statsWaardes[2] > 25){
+image(neutralmouthfoto,balloonPetX - 40,balloonPetY - 85,100,250);
+}
+else if(statsWaardes[2] < 25){
+  image(sadmouthfoto,balloonPetX - 50,balloonPetY - 70,100,250);
+}
+
+if(statsWaardes[3] < 50){
+  image(askfoodfoto,balloonPetX + 75 ,balloonPetY - 105,150,200);
+}
+
+if(statsWaardes[1] < 50){
+  image(asksleepfoto,balloonPetX - 165 ,balloonPetY + 25,150,200);
+}
+
+if(statsWaardes[0] <50 ){
+  image(stenchfoto,balloonPetX, balloonPetY - 180,100,160);
+}
+if(statsWaardes[0] <25 ){
+  image(stenchfoto,balloonPetX, balloonPetY - 180,100,160);
+  image(mudfoto,balloonPetX - 50, balloonPetY - 60,100,100);
+  image(fly1foto, balloonPetX + 20, balloonPetY ,50,50);
+  image(fly2foto, balloonPetX - 70, balloonPetY - 50 ,50,50)
+}
+
 }
 function icon(x, y, color) {
   // layout van de knopjes
@@ -230,6 +287,16 @@ function preload() {
   spongebobfoto = loadImage('spongebob.png');
   sleepspeechbubblefoto = loadImage('sleepspeechbubble.png');
   tennisballfoto = loadImage('tennisball.png');
+  slaapmaskerfoto = loadImage('slaapmasker.png');
+  balloonmouthfoto = loadImage('balloonmouth.png');
+  neutralmouthfoto = loadImage('neutralmouth.png');
+  sadmouthfoto = loadImage('sadmouth.png');
+  askfoodfoto = loadImage('askfood.png');
+  asksleepfoto = loadImage('asksleep.png');
+  stenchfoto = loadImage('stench.png');
+  mudfoto = loadImage('mud.png');
+  fly1foto = loadImage('fly2.png');
+  fly2foto = loadImage('fly 2.png');
 
 
 }
@@ -245,8 +312,6 @@ function balloonpet(x, y, v1, v2, v3) {
   line(x - 50, y, x - 10, y + 20);
   line(x + 50, y, x + 10, y + 20);
 
-}
-function balloonmouth() {
 }
 function mousePressed() {
   if (mouseButton == LEFT) {
