@@ -36,6 +36,19 @@ let balloonPetY = 150;
 function setup() {
   createCanvas(1255, 550);
 
+  let loadedstatsJSON = getItem("stats")
+
+if( loadedstatsJSON != null){
+  
+  let loadedstats = JSON.parse(loadedstatsJSON);
+
+
+  if(loadedstats.statsWaardes != null)
+  {
+    statsWaardes = loadedstats.statsWaardes;
+  }
+
+}
 
 }
 
@@ -183,6 +196,13 @@ function draw() {
     }
   }
 
+
+    let stats = {
+    };
+    stats.statsWaardes = statsWaardes;
+    stats.naam = "klaas"
+
+    storeItem("stats",JSON.stringify(stats));
 }
 function icon(x, y, color) {
   // layout van de knopjes
