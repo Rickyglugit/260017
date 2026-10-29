@@ -36,19 +36,21 @@ let balloonPetY = 150;
 function setup() {
   createCanvas(1255, 550);
 
+  //loadedstatsJSON haalt de stats uit de local storage en onthoud het als je de website afsluit
   let loadedstatsJSON = getItem("stats")
 
-if( loadedstatsJSON != null){
-  
-  let loadedstats = JSON.parse(loadedstatsJSON);
+  // loadedstats veranderd de loadedstatsJSON weer terug naar een data object?
+  if (loadedstatsJSON != null) {
 
+    let loadedstats = JSON.parse(loadedstatsJSON);
 
-  if(loadedstats.statsWaardes != null)
-  {
-    statsWaardes = loadedstats.statsWaardes;
+  // dit zorgt ervoor dat als de loadedstats.statwaardes niet gelijk staan aan 0  
+  // datde statwaardes gelijk zijn aan de loadedstats.statWaardes
+    if (loadedstats.statsWaardes != null) {
+      statsWaardes = loadedstats.statsWaardes;
+    }
+
   }
-
-}
 
 }
 
@@ -147,6 +149,11 @@ function draw() {
       // de honger bar gaat weer om hoog als het voedsel verdwijnt
       statsWaardes[3] = statsWaardes[3] + 25
       statsWaardes[1] = statsWaardes[1] + 50
+      foodcounter = foodcounter + 1
+      if(foodcounter == 5){
+        foodcounter = 0
+        statsWaardes[0] = statsWaardes[0] - 25
+      }
     }
     // foto van voedsel 
     image(aardbeifoto, foodImageX, foodImageY, 50, 50);
@@ -196,13 +203,12 @@ function draw() {
     }
   }
 
-
-    let stats = {
-    };
-    stats.statsWaardes = statsWaardes;
-    stats.naam = "klaas"
-
-    storeItem("stats",JSON.stringify(stats));
+  // stats variable is aangemaakt zodat je hem kan storen
+  let stats = {
+  };
+  stats.statsWaardes = statsWaardes;
+  // JSON stringify veranderd mijn data object in een string dat wordt opgeslagen in local storage
+  storeItem("stats", JSON.stringify(stats));
 }
 function icon(x, y, color) {
   // layout van de knopjes
