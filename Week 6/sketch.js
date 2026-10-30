@@ -21,10 +21,10 @@ let fly1foto
 let fly2foto
 let mudfoto
 
-let hongerPerSeconde = 0.6;
-let gezondheidPerseconde = 0.8;
-let vrolijkheidPerseconde = 1;
-let energiePerseconden = 0.7;
+let hongerPerSeconde = 0.8;
+let gezondheidPerseconde = 1;
+let vrolijkheidPerseconde = 0.9;
+let energiePerseconden = 1.2;
 
 let showFoodImage = false;
 let foodImageX = 0;
@@ -44,6 +44,8 @@ let tennisImageY = [];
 let balloonPetX = 600;
 let balloonPetY = 150;
 
+let balloondeathfoto
+
 function setup() {
   createCanvas(1255, 550);
 
@@ -62,11 +64,11 @@ function setup() {
     }
 
   }
-
 }
 
 function draw() {
   background(220);
+
   image(roombackground, 0, 0, 1255, 550);
   // zorgt dat alle statwaardes naar beneden gaan
   statsWaardes[3] = statsWaardes[3] - hongerPerSeconde * deltaTime * 0.001;
@@ -160,7 +162,19 @@ function draw() {
 
   // tamagotchi zelf
   strokeWeight(2)
-  balloonpet(balloonPetX, balloonPetY, 205, 239, 250);
+
+  // Laat de dode gus zien als de stats te laag zijn
+  if (statsWaardes[0] <= 0 && statsWaardes[1] <= 0 && statsWaardes[2] <= 0 && statsWaardes[3] <= 0) {
+    image(balloondeathfoto, balloonPetX - 150, balloonPetY - 120, 300, 500);
+  }
+  // Laat de levende gus (en de andere plaatjes zoals tekstballonnen en mond) zien als gus leeft
+  else {
+    balloonpet(balloonPetX, balloonPetY, 205, 239, 250);
+    showfotos();
+  }
+  // naam van het huisdier
+  fill(255, 255, 255);
+  text("gus", balloonPetX - 10, balloonPetY - 90)
 
   if (showFoodImage) {
     //als je op het voedsel klikt kun je het slepen
@@ -186,30 +200,37 @@ function draw() {
     image(aardbeifoto, foodImageX, foodImageY, 50, 50);
   }
 
+  // zorgt ervoor dat zodra het de spons in aanraking komt met de tamagotchi dat de gezondheids bar omhoog gaat
+  // en laat de sponsfoto zien
   if (showSpongeImage) {
     image(spongebobfoto, mouseX - 35, mouseY - 55, 75, 125);
     let distanceToPet = dist(balloonPetX, balloonPetY, mouseX, mouseY);
     if (distanceToPet < 40) {
       statsWaardes[0] = statsWaardes[0] + 1
     }
+    // als gezondheid bar 100 is  verdwijnt de spons
     if (statsWaardes[0] > 100)
       showSpongeImage = false
   }
+
+  // laat de sleepspeechbubble en slaapmasker zien en tegelijketijd gaat energie en gezondheid omhoog
   if (showSleepSpeechBubbleImage) {
     image(sleepspeechbubblefoto, balloonPetX - 400, balloonPetY - 250, 550, 400);
     image(slaapmaskerfoto, balloonPetX - 85, balloonPetY - 50, 175, 125);
     statsWaardes[1] = statsWaardes[1] + 1
+    // als energie 100 is dan laat hj de fotos niet meer zien
     if (statsWaardes[1] > 100) {
       showSleepSpeechBubbleImage = false
     }
   }
+  // laat de tennisball foto zien
   if (showTennisBallImage) {
     for (let index = 0; index < tennisImageX.length; index++) {
       image(tennisballfoto, tennisImageX[index], tennisImageY[index], 100, 100);
     }
   }
 
-
+  // dit zorgt ervoor dat dat de balloonpet achter de tennis ballen aan gaat
   if (tennisImageX.length > 0) {
     let targetX = tennisImageX[0]; // het x coordinaat van de eerste tennisbal
     let targetY = tennisImageY[0]; // het y coordinaat van de eerste tennisbal
@@ -224,6 +245,7 @@ function draw() {
     // en doe de happiness omhoog
     let distanceToPet = dist(balloonPetX, balloonPetY, targetX, targetY);
     if (distanceToPet < 50) {
+      // energie gaat omlaag en vrolijkheid gaat omhoog
       statsWaardes[2] = statsWaardes[2] + 25;
       tennisImageX.shift();
       tennisImageY.shift();
@@ -237,34 +259,6 @@ function draw() {
   stats.statsWaardes = statsWaardes;
   // JSON stringify veranderd mijn data object in een string dat wordt opgeslagen in local storage
   storeItem("stats", JSON.stringify(stats));
-// dit verranderd de mond van de balloon gebaseerd op de statistieken
-if(statsWaardes[2] >50){
-  image(balloonmouthfoto,balloonPetX - 125,balloonPetY - 65,200,350);
-}
-else if(statsWaardes[2] > 25){
-image(neutralmouthfoto,balloonPetX - 40,balloonPetY - 85,100,250);
-}
-else if(statsWaardes[2] < 25){
-  image(sadmouthfoto,balloonPetX - 50,balloonPetY - 70,100,250);
-}
-
-if(statsWaardes[3] < 50){
-  image(askfoodfoto,balloonPetX + 75 ,balloonPetY - 105,150,200);
-}
-
-if(statsWaardes[1] < 50){
-  image(asksleepfoto,balloonPetX - 165 ,balloonPetY + 25,150,200);
-}
-
-if(statsWaardes[0] <50 ){
-  image(stenchfoto,balloonPetX, balloonPetY - 180,100,160);
-}
-if(statsWaardes[0] <25 ){
-  image(stenchfoto,balloonPetX, balloonPetY - 180,100,160);
-  image(mudfoto,balloonPetX - 50, balloonPetY - 60,100,100);
-  image(fly1foto, balloonPetX + 20, balloonPetY ,50,50);
-  image(fly2foto, balloonPetX - 70, balloonPetY - 50 ,50,50)
-}
 
 }
 function icon(x, y, color) {
@@ -297,17 +291,20 @@ function preload() {
   mudfoto = loadImage('mud.png');
   fly1foto = loadImage('fly2.png');
   fly2foto = loadImage('fly 2.png');
+  balloondeathfoto = loadImage('balloondeath.png');
 
 
 }
 function balloonpet(x, y, v1, v2, v3) {
+
   fill(v1, v2, v3)
-  // x 500, y = 300
+  // lichaam van balloon
   circle(x, y, 150, 150);
   rect(x - 10, 70 + y, 20, 10);
+  // de lus van de balloon
   fill(175, 133, 0);
   rect(x - 5, 80 + y, 10, 70);
-
+  // de ogen
   strokeWeight(5);
   line(x - 50, y, x - 10, y + 20);
   line(x + 50, y, x + 10, y + 20);
@@ -330,26 +327,62 @@ function mousePressed() {
     if (distanceTofood < 40) {
       foodFollowMouse = true;
     }
-
+    // als je op de sponsknop klikt spawnt er een spons en de spons volgt je muis
     let distanceToMouse2 = dist(565, 475, mouseX, mouseY);
     if (distanceToMouse2 < 70) {
       showSpongeImage = true
     }
+    // als je op de maan knop klikt spawnt een slaap speech bubble en slaap masker
     let distanceToMouse3 = dist(665, 475, mouseX, mouseY);
     if (distanceToMouse3 < 70) {
       showSleepSpeechBubbleImage = true
     }
-
+    // als je op de speel knop klikt(met de bal) dan komt er een tennis ball in beelt op willekeurige posities
     let distanceToMouse4 = dist(780, 510, mouseX, mouseY);
     if (distanceToMouse4 < 70) {
       showTennisBallImage = true
       tennisImageX.push(random(0, 500));
       tennisImageY.push(random(0, 500));
     }
+
   }
+
 }
 
 function mouseReleased() {
   // volgt de muis niet meer
   foodFollowMouse = false;
+}
+function showfotos() {
+
+  // dit verranderd de mond van de balloon gebaseerd op de statistieken
+  if (statsWaardes[2] > 50) {
+    image(balloonmouthfoto, balloonPetX - 125, balloonPetY - 65, 200, 350);
+  }
+  else if (statsWaardes[2] > 25) {
+    image(neutralmouthfoto, balloonPetX - 40, balloonPetY - 85, 100, 250);
+  }
+  else if (statsWaardes[2] < 25) {
+    image(sadmouthfoto, balloonPetX - 50, balloonPetY - 70, 100, 250);
+  }
+
+  if (statsWaardes[3] < 50) {
+    image(askfoodfoto, balloonPetX + 75, balloonPetY - 105, 150, 200);
+  }
+
+  if (statsWaardes[1] < 50) {
+    image(asksleepfoto, balloonPetX - 165, balloonPetY + 25, 150, 200);
+  }
+
+  if (statsWaardes[0] < 50) {
+    image(stenchfoto, balloonPetX, balloonPetY - 180, 100, 160);
+  }
+  if (statsWaardes[0] < 25) {
+    image(stenchfoto, balloonPetX, balloonPetY - 180, 100, 160);
+    image(mudfoto, balloonPetX - 50, balloonPetY - 60, 100, 100);
+    image(fly1foto, balloonPetX + 20, balloonPetY, 50, 50);
+    image(fly2foto, balloonPetX - 70, balloonPetY - 50, 50, 50);
+  }
+
+
 }
