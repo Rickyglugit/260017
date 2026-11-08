@@ -131,7 +131,7 @@ else{
   fill(0);
 noStroke();
 textSize(40);
-text("guess the flower combination (˵ •̀ ᴗ - ˵ )", 50, 40);
+text("Guess the flower combination (˵ •̀ ᴗ - ˵ )", 50, 40);
 }
 
 }
