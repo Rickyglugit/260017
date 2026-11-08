@@ -9,7 +9,7 @@ function setup() {
 
 function draw() {
   strokeWeight(0)
-  background(220);
+  background(218);
   //stengel
   fill(0, 150, 0);
   rect(300, 350+200, 20, 150);
@@ -126,6 +126,12 @@ flower3(590);
 if (flowercounter1 == 2 && flowercounter2 == 0 && flowercounter3 == 1){
    image(happybirthdayfoto, 320,-135,500,550);
 
+}
+else{
+  fill(0);
+noStroke();
+textSize(40);
+text("guess the flower combination (˵ •̀ ᴗ - ˵ )", 50, 40);
 }
 
 }
